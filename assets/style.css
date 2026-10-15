@@ -111,3 +111,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .inv .small{font-size:12px;margin:6px 0 0}#refout,#refqout{margin:10px 0 0;color:var(--gold);font-size:15px}
 .inv .rules{padding-left:1.4em;color:var(--muted);font-size:15px}.inv .rules li{margin-bottom:6px}
 [hidden]{display:none!important}
+.inv .tiers{list-style:none;padding:0;margin:0 0 8px;display:grid;gap:8px}
+.inv .tiers li{display:flex;gap:14px;align-items:baseline;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:10px 14px}
+.inv .tiers b{color:var(--gold);white-space:nowrap;min-width:4.5em}.inv .tiers span{color:var(--ink)}
+.inv .prog{display:block;margin-top:6px;color:var(--ink);font-size:14px}
