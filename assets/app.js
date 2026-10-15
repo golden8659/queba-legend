@@ -75,5 +75,15 @@
   }
   // visitor count (stats.mahjongx.net stores only a salted hash of the IP)
   var rc=null;try{var q=new URLSearchParams(location.search).get('r');rc=get('qb-rc');if(!rc&&q&&/^[A-HJ-NP-Z2-9]{6}$/.test(q.toUpperCase())){rc=q.toUpperCase();set('qb-rc',rc)}}catch(e){}
-  try{var d=JSON.stringify({p:location.pathname,r:document.referrer,rc:rc});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
+  // time on page: counts only while the tab is visible and the reader was active in the last 2 minutes
+  var vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36),sec=0,depth=0,lastAct=Date.now();
+  function act(){lastAct=Date.now()}
+  ['scroll','mousemove','keydown','touchstart','click'].forEach(function(ev){addEventListener(ev,act,{passive:true})});
+  function measure(){var de=document.documentElement,h=de.scrollHeight-innerHeight;var p=h>0?Math.round((scrollY+0)/h*100):100;if(p>depth)depth=Math.min(100,p)}
+  addEventListener('scroll',measure,{passive:true});setTimeout(measure,1500);
+  setInterval(function(){if(document.visibilityState==='visible'&&Date.now()-lastAct<120000)sec+=5},5000);
+  function flush(){if(sec<1)return;try{navigator.sendBeacon('https://stats.mahjongx.net/t',JSON.stringify({v:vid,s:sec,d:depth}))}catch(e){}}
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush()});
+  addEventListener('pagehide',flush);setInterval(flush,60000);
+  try{var d=JSON.stringify({p:location.pathname,r:document.referrer,rc:rc,v:vid});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
 })();
