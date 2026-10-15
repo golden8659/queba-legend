@@ -25,6 +25,8 @@
   document.addEventListener('click',function(e){menus.forEach(function(m){if(m.open&&!m.contains(e.target))m.open=false})});
   // Simplified / Traditional Chinese. On zh pages the text is converted in place with OpenCC;
   // from other languages the link opens the zh page and the stored choice applies there.
+  // ?zh=t / ?zh=s in a link picks Traditional / Simplified for this reader (used by Taiwan / Hong Kong posts)
+  try{var zq=new URLSearchParams(location.search).get('zh');if(zq==='t'||zq==='s')set('qb-zh',zq)}catch(e){}
   var orig=null,trad=get('qb-zh')==='t',onZh=root.dataset.lang==='zh';
   function walk(fn){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n,i=0;while(n=w.nextNode()){if(n.parentNode.closest('.pop'))continue;fn(n,i++)}}
   function markZh(){document.querySelectorAll('[data-zh]').forEach(function(a){if(onZh&&(a.dataset.zh==='t')===trad)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
