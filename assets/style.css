@@ -125,3 +125,5 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .ruleslink{text-align:center;margin:18px 0 0}.ruleslink a{font-weight:600}
 .rules article h2{color:var(--gold);font-size:1.15em;margin:1.8em 0 .6em;border:0;padding:0;text-align:left}
 :root[data-lang] .rules article p{text-indent:0}
+.mappage{max-width:1100px}.mappage .lead{color:var(--muted);text-align:center;margin:-12px 0 24px}
+.map{margin:0 0 28px}.map img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)}.map figcaption{text-align:center;color:var(--muted);font-size:14px;margin-top:8px}
