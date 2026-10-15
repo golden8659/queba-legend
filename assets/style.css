@@ -7,7 +7,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);line-he
 a{color:var(--accent);text-decoration:none}
 h1,h2,.tag,.vol{text-wrap:balance}
 /* One content column for every block, so left edges line up across header, hero and sections. */
-.wrap,.hero,.ip,.intro,.toc{max-width:var(--w);margin:0 auto;padding-left:16px;padding-right:16px}
+.wrap,.hero,.ip,.refban,.intro,.toc{max-width:var(--w);margin:0 auto;padding-left:16px;padding-right:16px}
 /* Header */
 .bar{position:sticky;top:0;z-index:5;background:var(--hero);color:#f1d99c;box-shadow:0 2px 12px #0005}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
@@ -99,3 +99,14 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .gbitem .rep{margin:10px 0 0 0;padding:10px 14px;background:var(--paper);border-left:3px solid var(--gold);border-radius:4px;font-size:15px;white-space:pre-wrap}
 .gbitem .rep b{display:block;color:var(--gold);font-size:13px;margin-bottom:2px}
 .gblist .empty{color:var(--muted);text-align:center}
+/* Referral */
+.refban{padding-bottom:8px}.refban a{display:block;text-align:center;padding:12px 16px;border-radius:8px;background:linear-gradient(90deg,#9a2a1c,#a8782c);color:#fff;font-weight:600;font-size:15px;line-height:1.5}
+.inv .lead{color:var(--muted);text-align:center;margin:-12px 0 24px}
+.inv .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px;text-align:center}
+.inv .cta{border:0;cursor:pointer;font-family:inherit}.inv .cta[disabled]{opacity:.6}
+.inv .lab{font-size:13px;color:var(--gold);font-weight:600;margin:12px 0 6px;letter-spacing:.06em}
+.inv .linkrow{display:flex;gap:8px}.inv .linkrow input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+.inv .linkrow button{flex-shrink:0;font:inherit;font-size:14px;padding:0 14px;border-radius:8px;border:1px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer}
+.inv .secret{font-family:Menlo,Consolas,monospace;font-size:22px;letter-spacing:.12em;color:var(--ink);margin:0;user-select:all}
+.inv .small{font-size:12px;margin:6px 0 0}#refout,#refqout{margin:10px 0 0;color:var(--gold);font-size:15px}
+.inv .rules{padding-left:1.4em;color:var(--muted);font-size:15px}.inv .rules li{margin-bottom:6px}

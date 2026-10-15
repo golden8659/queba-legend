@@ -55,10 +55,26 @@
     }).catch(function(){})}
     load();
     gf.onsubmit=function(e){e.preventDefault();var b=gf.querySelector('button');b.disabled=true;out.textContent='';
-      fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({name:gf.name.value,body:gf.body.value,hp:gf.hp.value,lang:lang})})
-      .then(function(r){return r.json()}).then(function(d){if(d.ok){out.textContent=S.gb_sent;gf.body.value=''}else out.textContent=d.err==='rate'?S.gb_rate:d.err==='short'?S.gb_short:S.gb_err})
+      fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({name:gf.elements["name"].value,body:gf.elements["body"].value,hp:gf.elements["hp"].value,lang:lang})})
+      .then(function(r){return r.json()}).then(function(d){if(d.ok){out.textContent=S.gb_sent;gf.elements["body"].value=""else out.textContent=d.err==='rate'?S.gb_rate:d.err==='short'?S.gb_short:S.gb_err})
       .catch(function(){out.textContent=S.gb_err}).then(function(){b.disabled=false})};
   }
+  // referral page: create a personal link, show it, check progress by secret
+  var rb=document.getElementById('refbox');
+  if(rb){
+    var RS=JSON.parse(rb.dataset.strings),RAPI='https://stats.mahjongx.net/r/',rl=rb.dataset.lang,rout=document.getElementById('refout'),qout=document.getElementById('refqout'),qin=document.getElementById('refq');
+    function fill(t,v,r){return t.replace('{v}',v).replace('{r}',r)}
+    function showMine(code,secret){document.getElementById('refmine').hidden=false;document.getElementById('reflink').value=rb.dataset.base+'?r='+code;document.getElementById('refsecret').textContent=secret;document.getElementById('refget').hidden=true;qin.value=secret}
+    function check(secret,el){fetch(RAPI+'q?s='+encodeURIComponent(secret)).then(function(r){return r.json()}).then(function(d){el.textContent=d.ok?fill(RS.ref_stats,d.visitors,d.readers):(d.err==='notfound'||d.err==='bad'?RS.ref_notfound:RS.ref_err)}).catch(function(){el.textContent=RS.ref_err})}
+    var saved=null;try{saved=JSON.parse(get('qb-ref-mine')||'null')}catch(e){}
+    if(saved){showMine(saved.code,saved.secret);check(saved.secret,rout)}
+    document.getElementById('refget').onclick=function(){var b=this;b.disabled=true;rout.textContent='';
+      fetch(RAPI+'new',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({lang:rl})}).then(function(r){return r.json()}).then(function(d){
+        if(d.ok){set('qb-ref-mine',JSON.stringify({code:d.code,secret:d.secret}));showMine(d.code,d.secret)}else rout.textContent=d.err==='rate'?RS.ref_rate:RS.ref_err}).catch(function(){rout.textContent=RS.ref_err}).then(function(){b.disabled=false})};
+    document.getElementById('refcopy').onclick=function(){var i=document.getElementById('reflink'),b=this;i.select();(navigator.clipboard?navigator.clipboard.writeText(i.value):Promise.reject()).catch(function(){document.execCommand('copy')}).then(function(){var o=b.textContent;b.textContent=RS.ref_copied;setTimeout(function(){b.textContent=o},1500)})};
+    document.getElementById('refqbtn').onclick=function(){var v=qin.value.trim().toUpperCase();if(v)check(v,qout)};
+  }
   // visitor count (stats.mahjongx.net stores only a salted hash of the IP)
-  try{var d=JSON.stringify({p:location.pathname,r:document.referrer});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
+  var rc=null;try{var q=new URLSearchParams(location.search).get('r');rc=get('qb-rc');if(!rc&&q&&/^[A-HJ-NP-Z2-9]{6}$/.test(q.toUpperCase())){rc=q.toUpperCase();set('qb-rc',rc)}}catch(e){}
+  try{var d=JSON.stringify({p:location.pathname,r:document.referrer,rc:rc});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
 })();
