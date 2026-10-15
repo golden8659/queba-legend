@@ -164,3 +164,4 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .gamepage .play{margin:1.6em 0 0}.gamepage .play h2{font-size:1.25em;margin:0 0 .5em}
 .gamepage .dl .note{margin:.9em 0 0;font-size:.92em;color:var(--muted)}
 .hero picture{display:block;min-width:0}
+.reader .partline{text-align:center;letter-spacing:.3em;color:var(--gold);font-size:1.05em;margin:0 0 1.6em}
