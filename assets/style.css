@@ -7,7 +7,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);line-he
 a{color:var(--accent);text-decoration:none}
 h1,h2,.tag,.vol{text-wrap:balance}
 /* One content column for every block, so left edges line up across header, hero and sections. */
-.wrap,.hero,.intro,.toc{max-width:var(--w);margin:0 auto;padding-left:16px;padding-right:16px}
+.wrap,.hero,.ip,.intro,.toc{max-width:var(--w);margin:0 auto;padding-left:16px;padding-right:16px}
 /* Header */
 .bar{position:sticky;top:0;z-index:5;background:var(--hero);color:#f1d99c;box-shadow:0 2px 12px #0005}
 .bar .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
@@ -37,6 +37,11 @@ h1,h2,.tag,.vol{text-wrap:balance}
 .cast{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cast li{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.55;color:var(--muted)}
 .cast b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+/* Related works: the game and the animated series */
+.ip{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:12px}
+.ip>div{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:14px 18px}
+.ip p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}.ip .lab{font-size:12px;color:var(--gold);letter-spacing:.1em;font-weight:600}
+.ip .ttl{color:var(--ink);font-size:18px;font-weight:700;margin:2px 0 4px}
 /* Sections share the hero column width; text inside stays at a comfortable measure. */
 .intro,.toc{padding-top:8px;padding-bottom:28px}
 .intro>*{max-width:760px}
@@ -71,6 +76,7 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
  .pitch{text-align:center}.tag{font-size:21px}
  .cast li{text-align:center}
  h2{text-align:center}
+ .ip{grid-template-columns:1fr}.ip>div{text-align:center;border-left-width:1px;border-top:3px solid var(--gold)}
  .toc li a,.toc li.soon{justify-content:center}
  .brand{font-size:18px}.bar nav>a{padding:0 7px}
  h1.ch{font-size:26px}
