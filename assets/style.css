@@ -80,7 +80,8 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
  .ip{grid-template-columns:1fr}.ip>div{text-align:center;border-left-width:1px;border-top:3px solid var(--gold)}
  .toc li a,.toc li.soon{justify-content:center}
  .brand{font-size:18px}.bar nav>a{padding:0 7px}
- :root[data-lang="en"] .brand{font-size:14px;letter-spacing:.02em;white-space:normal;line-height:1.15;max-width:9.5em}
+ :root[data-lang="en"] .brand{font-size:13px;letter-spacing:.02em;white-space:normal;line-height:1.2;max-width:10.2em;overflow:visible;text-overflow:clip}
+ :root[data-lang="en"] .bar nav>a[href$="#toc"]{display:none}
  .vol .sep{display:block;width:0;height:0;margin:0}
  h1.ch{font-size:26px}
 }
