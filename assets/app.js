@@ -41,6 +41,24 @@
     var zs=document.querySelector('.pop a[lang="zh-Hans"]');
     if(zs&&root.dataset.lang==='zh')zs.onclick=function(e){if(trad){e.preventDefault();trad=false;set('qb-zh','s');applyTrad(false);document.getElementById('langmenu').open=false}};
   }
+  // guestbook (stats.mahjongx.net/m): submit for moderation, list approved messages
+  var gf=document.getElementById('gbform');
+  if(gf){
+    var S=JSON.parse(gf.dataset.strings),API='https://stats.mahjongx.net/m',lang=gf.dataset.lang,out=document.getElementById('gbmsg'),list=document.getElementById('gblist');
+    var loc={zh:'zh-CN',en:'en-US',ja:'ja-JP',ko:'ko-KR'}[lang];
+    function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+    function load(){fetch(API+'?lang='+lang).then(function(r){return r.json()}).then(function(d){
+      list.textContent='';
+      if(!d.messages||!d.messages.length){list.appendChild(el('p','empty',S.gb_empty));return}
+      d.messages.forEach(function(m){var it=el('div','gbitem'),who=el('div','who');who.appendChild(el('b',null,m.name||S.gb_anon));who.appendChild(document.createTextNode(new Date(m.ts).toLocaleDateString(loc)));it.appendChild(who);it.appendChild(el('p','txt',m.body));
+        if(m.reply){var r=el('div','rep');r.appendChild(el('b',null,S.gb_reply));r.appendChild(document.createTextNode(m.reply));it.appendChild(r)}list.appendChild(it)});
+    }).catch(function(){})}
+    load();
+    gf.onsubmit=function(e){e.preventDefault();var b=gf.querySelector('button');b.disabled=true;out.textContent='';
+      fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({name:gf.name.value,body:gf.body.value,hp:gf.hp.value,lang:lang})})
+      .then(function(r){return r.json()}).then(function(d){if(d.ok){out.textContent=S.gb_sent;gf.body.value=''}else out.textContent=d.err==='rate'?S.gb_rate:d.err==='short'?S.gb_short:S.gb_err})
+      .catch(function(){out.textContent=S.gb_err}).then(function(){b.disabled=false})};
+  }
   // visitor count (stats.mahjongx.net stores only a salted hash of the IP)
   try{var d=JSON.stringify({p:location.pathname,r:document.referrer});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
 })();
