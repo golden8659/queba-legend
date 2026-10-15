@@ -70,7 +70,7 @@
     if(saved){showMine(saved.code,saved.secret);check(saved.secret,rout)}
     document.getElementById('refget').onclick=function(){var b=this;b.disabled=true;rout.textContent='';
       fetch(RAPI+'new',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({lang:rl})}).then(function(r){return r.json()}).then(function(d){
-        if(d.ok){set('qb-ref-mine',JSON.stringify({code:d.code,secret:d.secret}));showMine(d.code,d.secret)}else rout.textContent=d.err==='rate'?RS.ref_rate:RS.ref_err}).catch(function(){rout.textContent=RS.ref_err}).then(function(){b.disabled=false})};
+        if(d.ok){set("qb-ref-mine",JSON.stringify({code:d.code,secret:d.secret}));showMine(d.code,d.secret);check(d.secret,rout)}else rout.textContent=d.err==='rate'?RS.ref_rate:RS.ref_err}).catch(function(){rout.textContent=RS.ref_err}).then(function(){b.disabled=false})};
     document.getElementById('refcopy').onclick=function(){var i=document.getElementById('reflink'),b=this;i.select();(navigator.clipboard?navigator.clipboard.writeText(i.value):Promise.reject()).catch(function(){document.execCommand('copy')}).then(function(){var o=b.textContent;b.textContent=RS.ref_copied;setTimeout(function(){b.textContent=o},1500)})};
     document.getElementById('refqbtn').onclick=function(){var v=qin.value.trim().toUpperCase();if(v)check(v,qout)};
   }

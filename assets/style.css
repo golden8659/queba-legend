@@ -110,3 +110,4 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .inv .secret{font-family:Menlo,Consolas,monospace;font-size:22px;letter-spacing:.12em;color:var(--ink);margin:0;user-select:all}
 .inv .small{font-size:12px;margin:6px 0 0}#refout,#refqout{margin:10px 0 0;color:var(--gold);font-size:15px}
 .inv .rules{padding-left:1.4em;color:var(--muted);font-size:15px}.inv .rules li{margin-bottom:6px}
+[hidden]{display:none!important}
