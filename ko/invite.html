@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="ko" data-lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>(function(){try{var ls=localStorage,q=new URLSearchParams(location.search),ua=navigator.userAgent,
+cur=document.documentElement.dataset.lang;if(ls.getItem('qb-lang')||q.has('zh')||q.has('lang')||navigator.webdriver||
+/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse|headless/i.test(ua))return;
+if(document.referrer&&new URL(document.referrer).host===location.host)return;
+var p=((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase(),
+w=/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
+if(w==='zh'&&/^zh-(tw|hk|mo|hant)/.test(p)&&!ls.getItem('qb-zh'))ls.setItem('qb-zh','t');if(w===cur)return;
+var a=document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans',en:'en',ja:'ja',ko:'ko'})[w]+'"]');
+if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
 <title>추천 이벤트｜작도의 전설</title>
 <meta name="description" content="마작패 한 벌은 백서른여섯 장. 그런데 그날 밤, 탁자 위에는 백서른일곱 장이 있었다.">
 <link rel="canonical" href="https://novel.mahjongx.net/ko/invite.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/invite.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/invite.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/invite.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/invite.html">
@@ -9,7 +18,7 @@
 <meta property="og:image" content="https://novel.mahjongx.net/assets/cover-ko.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="ko_KR"><meta property="og:site_name" content="작도의 전설">
 <link rel="icon" href="../assets/icon.png"><link rel="alternate" type="application/atom+xml" title="작도의 전설" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Noto+Sans+KR:wght@400;700&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=7519c997"><style>:root{--f-serif:"Noto Serif KR","AppleMyungjo","Batang",serif;--f-sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;}</style>
+<link rel="stylesheet" href="../assets/style.css?v=98cb33d3"><style>:root{--f-serif:"Noto Serif KR","AppleMyungjo","Batang",serif;--f-sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;}</style>
 <script>try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f)d.dataset.font=f;if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
 </head><body class="">
 <header class="bar"><div class="wrap"><a class="brand" href="index.html">작도의 전설</a>
@@ -31,5 +40,5 @@
 <footer><p>《작도의 전설》© 2026 청우루주　모든 권리는 저작권자에게 있습니다. 본 사이트는 이 작품의 유일한 최초 공개처입니다. 전재 시 출처를 밝혀 주세요.</p>
 <p class="small"><a href="map.html">세계 지도</a>　<a href="rules.html">마작 규칙</a>　<a href="invite.html">추천 이벤트</a>　<a href="guestbook.html">독자 방명록</a></p>
 <p class="small">작가가 창작을 주도하고 인공지능이 문장 집필을 돕습니다. <a href="about.html#ai">자세히 보기</a></p></footer>
-<script src="../assets/app.js?v=af7aaa9e" defer></script>
+<script src="../assets/app.js?v=0a72649a" defer></script>
 </body></html>

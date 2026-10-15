@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="zh-Hans" data-lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>(function(){try{var ls=localStorage,q=new URLSearchParams(location.search),ua=navigator.userAgent,
+cur=document.documentElement.dataset.lang;if(ls.getItem('qb-lang')||q.has('zh')||q.has('lang')||navigator.webdriver||
+/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse|headless/i.test(ua))return;
+if(document.referrer&&new URL(document.referrer).host===location.host)return;
+var p=((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase(),
+w=/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
+if(w==='zh'&&/^zh-(tw|hk|mo|hant)/.test(p)&&!ls.getItem('qb-zh'))ls.setItem('qb-zh','t');if(w===cur)return;
+var a=document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans',en:'en',ja:'ja',ko:'ko'})[w]+'"]');
+if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
 <title>关于本作｜雀霸传奇</title>
 <meta name="description" content="一副麻将，一百三十六张。可那一夜，牌桌上有一百三十七张。">
 <link rel="canonical" href="https://novel.mahjongx.net/about.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/about.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/about.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/about.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/about.html">
@@ -9,7 +18,7 @@
 <meta property="og:image" content="https://novel.mahjongx.net/assets/cover-zh.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="雀霸传奇">
 <link rel="icon" href="assets/icon.png"><link rel="alternate" type="application/atom+xml" title="雀霸传奇" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Noto+Sans+SC:wght@400;700&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css">
-<link rel="stylesheet" href="assets/style.css?v=7519c997"><style>:root{--f-serif:"Noto Serif SC","Songti SC","STSong",serif;--f-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;--f-kai:"LXGW WenKai","Kaiti SC","STKaiti","KaiTi",serif;}</style>
+<link rel="stylesheet" href="assets/style.css?v=98cb33d3"><style>:root{--f-serif:"Noto Serif SC","Songti SC","STSong",serif;--f-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;--f-kai:"LXGW WenKai","Kaiti SC","STKaiti","KaiTi",serif;}</style>
 <script>try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f)d.dataset.font=f;if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
 </head><body class="">
 <header class="bar"><div class="wrap"><a class="brand" href="index.html">雀霸传奇</a>
@@ -24,5 +33,5 @@
 <footer><p>《雀霸传奇》© 2026 听雨楼主　保留所有权利。本站为本作唯一首发地，转载请注明出处。</p>
 <p class="small"><a href="map.html">世界地图</a>　<a href="rules.html">麻将规则</a>　<a href="invite.html">推广有礼</a>　<a href="guestbook.html">读者留言</a></p>
 <p class="small">本作由作者主创，AI 辅助执笔。 <a href="about.html#ai">说明</a></p></footer>
-<script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/cn2t.js" defer></script><script src="assets/app.js?v=af7aaa9e" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/cn2t.js" defer></script><script src="assets/app.js?v=0a72649a" defer></script>
 </body></html>

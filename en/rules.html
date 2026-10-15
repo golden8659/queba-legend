@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en" data-lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>(function(){try{var ls=localStorage,q=new URLSearchParams(location.search),ua=navigator.userAgent,
+cur=document.documentElement.dataset.lang;if(ls.getItem('qb-lang')||q.has('zh')||q.has('lang')||navigator.webdriver||
+/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse|headless/i.test(ua))return;
+if(document.referrer&&new URL(document.referrer).host===location.host)return;
+var p=((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase(),
+w=/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
+if(w==='zh'&&/^zh-(tw|hk|mo|hant)/.test(p)&&!ls.getItem('qb-zh'))ls.setItem('qb-zh','t');if(w===cur)return;
+var a=document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans',en:'en',ja:'ja',ko:'ko'})[w]+'"]');
+if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
 <title>How Mahjong Works: Wild Tiles and Winning Hands in Legend of the Mahjong King</title>
 <meta name="description" content="Learn mahjong through Legend of the Mahjong King: 136 tiles, wild tiles, winning hands, and how a self-draw turns a 28-point deficit into victory.">
 <link rel="canonical" href="https://novel.mahjongx.net/en/rules.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/rules.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/rules.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/rules.html">
@@ -9,7 +18,7 @@
 <meta property="og:image" content="https://novel.mahjongx.net/assets/cover-en.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="LEGEND OF THE MAHJONG KING">
 <link rel="icon" href="../assets/icon.png"><link rel="alternate" type="application/atom+xml" title="LEGEND OF THE MAHJONG KING" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,800&family=Source+Sans+3:wght@400;700&family=Cinzel:wght@600&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=7519c997"><style>:root{--f-serif:"Literata",Georgia,serif;--f-sans:"Source Sans 3","Helvetica Neue",Arial,sans-serif;}</style>
+<link rel="stylesheet" href="../assets/style.css?v=98cb33d3"><style>:root{--f-serif:"Literata",Georgia,serif;--f-sans:"Source Sans 3","Helvetica Neue",Arial,sans-serif;}</style>
 <script>try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f)d.dataset.font=f;if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
 </head><body class="">
 <header class="bar"><div class="wrap"><a class="brand" href="index.html">LEGEND OF THE MAHJONG KING</a>
@@ -22,22 +31,28 @@
 <main class="reader rules"><h1 class="ch">How Mahjong Works: Wild Tiles and Winning Hands in Legend of the Mahjong King</h1><article><p>This page helps you follow every mahjong hand in Legend of the Mahjong King, from recognising tiles to understanding the choices that decide a match.</p>
 <h3>The tiles: a world in a set of 136</h3>
 <p>A set contains <strong>136 tiles</strong>, with four copies of each tile. The three suits, Characters, Bamboo and Dots, each run from one to nine. That makes thirty-six tiles per suit and 108 altogether. The four Winds, East, South, West and North, add sixteen tiles. The three Dragons, Red Dragon, Green Dragon and White Dragon, add twelve. The blank face of the White Dragon still represents a distinct tile.</p>
+<figure class="tiles"><picture><img src="/assets/rules/deck.png" alt="The full set: Characters, Bamboo and Dots from one to nine, the four Winds and the three Dragons. Four of each, 136 tiles in all." loading="lazy"></picture><figcaption>The full set: Characters, Bamboo and Dots from one to nine, the four Winds and the three Dragons. Four of each, 136 tiles in all.</figcaption></figure>
 <p>The novel gives these tiles a symbolic place in the cosmos. Characters, Bamboo and Dots stand for wealth, wood and metal; the Winds represent the four directions. The Dragons represent the heart of heaven, vitality and clarity, respectively. These are the story&#x27;s meanings. To follow a hand, begin with suits and numbers.</p>
 <p>Shuffled tiles are stacked into the <strong>wall</strong>, from which players draw. Each player&#x27;s own tiles form their hand; discarded tiles enter the discard pool. Watching those discards helps reveal what has appeared and what others might need. In Chapter One, the ninth turn follows Qinglan&#x27;s progress through his draws. A match of four hands does not mean four draws.</p>
 <h3>A winning hand: four groups and a pair</h3>
 <p>The usual structure is <strong>four groups plus a pair of eyes</strong>. A sequence contains three consecutive numbers in one suit, such as One, Two and Three of Characters. A triplet contains three identical tiles, such as three copies of the Three of Dots. A kong contains four identical tiles but still counts as one group. Two identical tiles form the pair of eyes.</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/melds_m.png"><img src="/assets/rules/melds.png" alt="From left: a sequence (One, Two, Three of Characters), a triplet (three Three of Dots), a kong (four Green Dragons) and a pair (two North Winds)." loading="lazy"></picture><figcaption>From left: a sequence (One, Two, Three of Characters), a triplet (three Three of Dots), a kong (four Green Dragons) and a pair (two North Winds).</figcaption></figure>
 <p>Without a kong, four groups of three plus a pair total fourteen tiles. A kong adds a physical tile to its group, so fourteen is not a fixed physical count for every winning hand. Winds and Dragons cannot form numbered sequences.</p>
 <p>To call <strong>pung</strong>, take another player&#x27;s discard to join two matching tiles in your hand, then expose the triplet. A <strong>kong</strong> groups four matching tiles under the applicable rules. To call <strong>chow</strong>, take the previous player&#x27;s discard to complete and expose a sequence with two tiles from your hand. The Tuidao School allows pung and kong but forbids chow. You can still form sequences from tiles you draw yourself.</p>
 <p>If one suitable tile would complete your hand, you are <strong>ready to win</strong>; the tiles that complete it are your winning tiles. A <strong>concealed hand</strong> has no groups exposed through chow, pung or an exposed kong. Qinglan builds his hand through his own draws in Chapter One.</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/ting_m.png"><img src="/assets/rules/ting.png" alt="Ready to win: thirteen tiles in place, one short. The Six and Seven of Dots wait for the Five or the Eight of Dots (faded, right); either one completes the hand." loading="lazy"></picture><figcaption>Ready to win: thirteen tiles in place, one short. The Six and Seven of Dots wait for the Five or the Eight of Dots (faded, right); either one completes the hand.</figcaption></figure>
 <p>Four groups and a pair are not the only winning pattern in the story. Chapter Five explicitly allows <strong>Seven Pairs</strong>, with a wild tile able to fill a missing partner.</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/sevenpairs_m.png"><img src="/assets/rules/sevenpairs.png" alt="Seven Pairs: six pairs, with the wild Red Dragon (gold frame) partnering the Green Dragon for the seventh." loading="lazy"></picture><figcaption>Seven Pairs: six pairs, with the wild Red Dragon (gold frame) partnering the Green Dragon for the seventh.</figcaption></figure>
 <h3>Wild tiles: the revealed type becomes wild</h3>
 <p>At the start of each Tuidao School hand, the scorekeeper will <strong>reveal a tile to determine the wild tile</strong>, turning over the third tile from the end of the wall. Tiles of that same type can act as a wild tile, replacing any needed tile when forming a hand. In the last hand of Chapter One, the revealed tile is a Red Dragon. Red Dragons are therefore wild for that hand; they are not always the wild type.</p>
+<figure class="tiles"><picture><img src="/assets/rules/ghost.png" alt="Choosing the wild: the third tile from the end of the wall is turned over. A Red Dragon comes up, so every Red Dragon is wild this hand." loading="lazy"></picture><figcaption>Choosing the wild: the third tile from the end of the wall is turned over. A Red Dragon comes up, so every Red Dragon is wild this hand.</figcaption></figure>
 <p>The revealed tile stays at the end of the wall and cannot be drawn in the chapter&#x27;s example. Qinglan holds a different copy. A wild tile fills a gap without adding another tile to his hand. His final arrangement shows exactly how:</p>
 <blockquote><p>One, Two and Three of Characters form the first sequence.</p></blockquote>
 <blockquote><p>Five, Six and Seven of Bamboo form the second sequence.</p></blockquote>
 <blockquote><p>Three copies of the Three of Dots form a triplet.</p></blockquote>
 <blockquote><p>Six of Dots, Seven of Dots and a Red Dragon form the third sequence, with the Red Dragon standing in for the Eight of Dots.</p></blockquote>
 <blockquote><p>Two North Winds form the pair of eyes.</p></blockquote>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/hand_m.png"><img src="/assets/rules/hand.png" alt="Qinglan&#x27;s winning hand in Chapter One: three sequences, a triplet and a pair. The gold-framed Red Dragon is wild and stands in for the Eight of Dots." loading="lazy"></picture><figcaption>Qinglan&#x27;s winning hand in Chapter One: three sequences, a triplet and a pair. The gold-framed Red Dragon is wild and stands in for the Eight of Dots.</figcaption></figure>
 <p>Three sequences, one triplet and one pair complete the structure. Qinglan&#x27;s final draw, the Three of Dots, completes the triplet. His Red Dragon fills the gap in the Dots sequence. The wild tile&#x27;s power is a precise substitution within the hand.</p>
 <h3>Self-draw and dealing in: from minus 28 to plus 4</h3>
 <p>Complete your hand with a tile you draw from the wall, and you win by <strong>self-draw</strong>. You can also win using another player&#x27;s discard; the player who discards that tile is said to <strong>deal in</strong>. Qinglan needs the first kind of win.</p>
@@ -63,5 +78,5 @@
 <footer><p>LEGEND OF THE MAHJONG KING © 2026 Master of the Rain Pavilion. All rights reserved. This website is the work’s sole first-publication venue. Please credit the source when reproducing it.</p>
 <p class="small"><a href="map.html">World Map</a>　<a href="rules.html">Mahjong Rules</a>　<a href="invite.html">Invite &amp; Earn</a>　<a href="guestbook.html">Guestbook</a></p>
 <p class="small">Created and directed by the author, with AI-assisted prose. <a href="about.html#ai">Learn more</a></p></footer>
-<script src="../assets/app.js?v=af7aaa9e" defer></script>
+<script src="../assets/app.js?v=0a72649a" defer></script>
 </body></html>

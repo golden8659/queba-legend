@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="ko" data-lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>(function(){try{var ls=localStorage,q=new URLSearchParams(location.search),ua=navigator.userAgent,
+cur=document.documentElement.dataset.lang;if(ls.getItem('qb-lang')||q.has('zh')||q.has('lang')||navigator.webdriver||
+/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse|headless/i.test(ua))return;
+if(document.referrer&&new URL(document.referrer).host===location.host)return;
+var p=((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase(),
+w=/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
+if(w==='zh'&&/^zh-(tw|hk|mo|hant)/.test(p)&&!ls.getItem('qb-zh'))ls.setItem('qb-zh','t');if(w===cur)return;
+var a=document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans',en:'en',ja:'ja',ko:'ko'})[w]+'"]');
+if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
 <title>마작 규칙 풀이: 작도의 전설 속 만능패와 화료</title>
 <meta name="description" content="《작도의 전설》 속 마작 규칙을 알아보세요. 패의 구성과 만능패, 화료, 쯔모와 방총을 익히고 스물여덟 점 적자가 네 점 승리로 바뀌는 과정을 따라갑니다.">
 <link rel="canonical" href="https://novel.mahjongx.net/ko/rules.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/rules.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/rules.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/rules.html">
@@ -9,7 +18,7 @@
 <meta property="og:image" content="https://novel.mahjongx.net/assets/cover-ko.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="ko_KR"><meta property="og:site_name" content="작도의 전설">
 <link rel="icon" href="../assets/icon.png"><link rel="alternate" type="application/atom+xml" title="작도의 전설" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Noto+Sans+KR:wght@400;700&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=7519c997"><style>:root{--f-serif:"Noto Serif KR","AppleMyungjo","Batang",serif;--f-sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;}</style>
+<link rel="stylesheet" href="../assets/style.css?v=98cb33d3"><style>:root{--f-serif:"Noto Serif KR","AppleMyungjo","Batang",serif;--f-sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;}</style>
 <script>try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f)d.dataset.font=f;if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
 </head><body class="">
 <header class="bar"><div class="wrap"><a class="brand" href="index.html">작도의 전설</a>
@@ -22,22 +31,28 @@
 <main class="reader rules"><h1 class="ch">마작 규칙 풀이: 작도의 전설 속 만능패와 화료</h1><article><p>이 페이지는 패를 알아보는 법부터 만능패와 점수 계산까지, 《작도의 전설》 속 매 대국과 대국자의 선택을 이해하도록 돕습니다.</p>
 <h3>백서른여섯 장에 담긴 하늘과 땅</h3>
 <p>마작패 한 벌은 <strong>백서른여섯 장</strong>이며, 같은 패가 네 장씩 있습니다. 만수패, 삭수패, 통수패는 각각 일부터 구까지 아홉 종류로, 한 계통에 서른여섯 장, 모두 백여덟 장입니다. 동, 남, 서, 북의 풍패 열여섯 장과 중, 발, 백의 삼원패 열두 장을 더하면 한 벌이 됩니다. 표면이 비어 있는 백도 엄연히 한 종류의 패입니다.</p>
+<figure class="tiles"><picture><img src="/assets/rules/deck.png" alt="패 한 벌: 만·삭·통 1~9, 동남서북 풍패, 중·발·백 삼원패. 종류마다 네 장씩, 모두 136장." loading="lazy"></picture><figcaption>패 한 벌: 만·삭·통 1~9, 동남서북 풍패, 중·발·백 삼원패. 종류마다 네 장씩, 모두 136장.</figcaption></figure>
 <p>소설에서 만수패, 삭수패, 통수패는 재물, 나무, 쇠를 상징합니다. 네 풍패는 네 방향을, 중, 발, 백은 각각 하늘의 중심, 생명력, 맑고 빈 경지를 나타냅니다. 이것이 작품에서 말하는 천지의 형상입니다. 대국을 따라갈 때는 우선 패의 계통과 숫자를 구별하면 됩니다.</p>
 <p>섞은 패를 쌓아 차례로 뽑는 곳이 <strong>패산</strong>, 각자가 들고 있는 패가 손패입니다. 버린 패는 버림패 구역에 놓입니다. 이를 살피면 이미 나온 패와 상대가 기다리는 패를 헤아릴 수 있습니다. 첫째 장의 아홉째 순은 청람이 패를 뽑아 가는 흐름을 따라 셉니다. 네 국을 겨룬다는 말은 패를 네 번만 뽑는다는 뜻이 아닙니다.</p>
 <h3>화료의 기본: 네 몸통과 한 머리</h3>
 <p>먼저 <strong>네 몸통과 한 머리</strong>라는 기본 형태를 기억하세요. 같은 계통에서 숫자가 이어지는 일만, 이만, 삼만 같은 세 장은 슌쯔입니다. 삼통 세 장처럼 같은 패 세 장은 커쯔입니다. 깡으로 같은 패 네 장을 모아도 몸통은 하나로 셉니다. 같은 패 두 장은 또이쯔이며, 머리로 남길 수 있습니다.</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/melds_m.png"><img src="/assets/rules/melds.png" alt="왼쪽부터 슌쯔(일만·이만·삼만), 커쯔(삼통 세 장), 깡(발 네 장), 또이쯔(북 두 장)." loading="lazy"></picture><figcaption>왼쪽부터 슌쯔(일만·이만·삼만), 커쯔(삼통 세 장), 깡(발 네 장), 또이쯔(북 두 장).</figcaption></figure>
 <p>깡이 없다면 세 장짜리 몸통 넷에 머리 두 장을 더해 열네 장입니다. 깡을 한 몸통에는 실제 패가 네 장 있으므로, 모든 화료패를 무조건 열네 장으로 세면 안 됩니다. 풍패와 삼원패는 숫자가 이어지는 수패가 아니므로 슌쯔를 만들 수 없습니다.</p>
 <p><strong>퐁</strong>은 손에 있는 또이쯔와 같은 패가 버려졌을 때 가져와 커쯔로 공개하는 것입니다. <strong>깡</strong>은 규칙에 따라 같은 패 네 장을 한 몸통으로 묶는 것입니다. <strong>치</strong>는 바로 앞 차례인 상가의 버림패를 손의 두 장과 합쳐 슌쯔로 공개하는 것입니다. 추도문에서는 퐁과 깡이 가능하지만 치는 할 수 없습니다. 직접 뽑은 패로 슌쯔를 만드는 것은 가능합니다.</p>
 <p>알맞은 한 장만 더 있으면 화료할 수 있는 상태가 <strong>텐파이</strong>, 그 한 장에 해당하는 패가 대기패입니다. <strong>멘젠</strong>은 치, 퐁, 명깡으로 몸통을 공개하지 않은 상태를 말합니다. 첫째 장에서 청람은 직접 패를 뽑으며 손패를 완성합니다.</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/ting_m.png"><img src="/assets/rules/ting.png" alt="텐파이: 열세 장이 갖춰져 한 장만 남았습니다. 육통·칠통은 오통이나 팔통(오른쪽 흐린 패)을 기다리며, 둘 중 하나만 오면 화료합니다." loading="lazy"></picture><figcaption>텐파이: 열세 장이 갖춰져 한 장만 남았습니다. 육통·칠통은 오통이나 팔통(오른쪽 흐린 패)을 기다리며, 둘 중 하나만 오면 화료합니다.</figcaption></figure>
 <p>네 몸통과 머리만이 작품의 유일한 화료 형태는 아닙니다. 다섯째 장에서는 <strong>치또이츠</strong>도 허용합니다. 또이쯔 일곱 개를 모으는 형태이며, 부족한 짝은 만능패로 채울 수 있습니다.</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/sevenpairs_m.png"><img src="/assets/rules/sevenpairs.png" alt="치또이츠: 또이쯔 여섯 개에, 만능패 중(금테)이 발의 짝이 되어 일곱 번째 쌍을 채웁니다." loading="lazy"></picture><figcaption>치또이츠: 또이쯔 여섯 개에, 만능패 중(금테)이 발의 짝이 되어 일곱 번째 쌍을 채웁니다.</figcaption></figure>
 <h3>만능패: 뒤집어 나온 것과 같은 종류</h3>
 <p>추도문에서는 매 국을 시작할 때 사주가 <strong>패산의 끝에서 세 번째 패를 뒤집어 만능패를 정합니다</strong>. 나온 패와 같은 종류가 그 국의 만능패가 되어, 손패를 구성할 때 필요한 어떤 패든 대신할 수 있습니다. 첫째 장의 마지막 국에는 중이 나왔으므로 중이 만능패가 됩니다. 언제나 중으로 고정된 것은 아닙니다.</p>
+<figure class="tiles"><picture><img src="/assets/rules/ghost.png" alt="만능패 정하기: 패산 끝에서 세 번째 패를 뒤집습니다. 중이 나왔으니 이번 판의 중은 모두 만능패입니다." loading="lazy"></picture><figcaption>만능패 정하기: 패산 끝에서 세 번째 패를 뒤집습니다. 중이 나왔으니 이번 판의 중은 모두 만능패입니다.</figcaption></figure>
 <p>뒤집은 패는 패산 끝에 남고, 첫째 장에서는 뽑을 수 없는 패라고 명시합니다. 청람이 손에 가진 중은 다른 한 장입니다. 만능패는 빈자리를 채우지만 패의 수를 늘리지는 않습니다. 마지막 손패를 풀어 보면 분명해집니다.</p>
 <blockquote><p>일만, 이만, 삼만으로 첫 번째 슌쯔를 만듭니다.</p></blockquote>
 <blockquote><p>오삭, 육삭, 칠삭으로 두 번째 슌쯔를 만듭니다.</p></blockquote>
 <blockquote><p>삼통, 삼통, 삼통으로 커쯔 하나를 만듭니다.</p></blockquote>
 <blockquote><p>육통, 칠통, 중에서 중을 팔통으로 써서 세 번째 슌쯔를 만듭니다.</p></blockquote>
 <blockquote><p>북, 북은 머리가 됩니다.</p></blockquote>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/hand_m.png"><img src="/assets/rules/hand.png" alt="첫째 장 청람의 화료패: 슌쯔 셋, 커쯔 하나, 머리 한 쌍. 금테 중은 만능패로 팔통 대신 쓰입니다." loading="lazy"></picture><figcaption>첫째 장 청람의 화료패: 슌쯔 셋, 커쯔 하나, 머리 한 쌍. 금테 중은 만능패로 팔통 대신 쓰입니다.</figcaption></figure>
 <p>슌쯔 셋, 커쯔 하나, 머리 하나로 형태가 완성됩니다. 마지막에 뽑은 삼통은 커쯔를 완성하고, 손에 있던 중은 통수패 슌쯔의 빈자리를 채웁니다. 만능패의 힘은 이처럼 구체적인 한 장의 역할을 대신하는 데 있습니다.</p>
 <h3>쯔모와 방총: 스물여덟 점 적자에서 네 점 승리까지</h3>
 <p>패산에서 직접 뽑은 패로 화료하는 것이 <strong>쯔모</strong>입니다. 다른 사람의 버림패로 화료하는 것은 론이며, 그 패를 버린 사람은 <strong>방총</strong>한 것입니다. 첫째 장에서 청람에게 필요한 승리는 쯔모입니다.</p>
@@ -63,5 +78,5 @@
 <footer><p>《작도의 전설》© 2026 청우루주　모든 권리는 저작권자에게 있습니다. 본 사이트는 이 작품의 유일한 최초 공개처입니다. 전재 시 출처를 밝혀 주세요.</p>
 <p class="small"><a href="map.html">세계 지도</a>　<a href="rules.html">마작 규칙</a>　<a href="invite.html">추천 이벤트</a>　<a href="guestbook.html">독자 방명록</a></p>
 <p class="small">작가가 창작을 주도하고 인공지능이 문장 집필을 돕습니다. <a href="about.html#ai">자세히 보기</a></p></footer>
-<script src="../assets/app.js?v=af7aaa9e" defer></script>
+<script src="../assets/app.js?v=0a72649a" defer></script>
 </body></html>

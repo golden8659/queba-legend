@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="ja" data-lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>(function(){try{var ls=localStorage,q=new URLSearchParams(location.search),ua=navigator.userAgent,
+cur=document.documentElement.dataset.lang;if(ls.getItem('qb-lang')||q.has('zh')||q.has('lang')||navigator.webdriver||
+/bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse|headless/i.test(ua))return;
+if(document.referrer&&new URL(document.referrer).host===location.host)return;
+var p=((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase(),
+w=/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
+if(w==='zh'&&/^zh-(tw|hk|mo|hant)/.test(p)&&!ls.getItem('qb-zh'))ls.setItem('qb-zh','t');if(w===cur)return;
+var a=document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans',en:'en',ja:'ja',ko:'ko'})[w]+'"]');
+if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
 <title>麻雀ルール図解：『雀覇伝奇』の万能牌と和了を読み解く</title>
 <meta name="description" content="『雀覇伝奇』の麻雀ルールを解説。百三十六枚の牌、万能牌、和了の形、ツモと放銃を知り、二十八点の負けから四点の勝ちへの逆転を読み解きます。">
 <link rel="canonical" href="https://novel.mahjongx.net/ja/rules.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/rules.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/rules.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/rules.html">
@@ -9,7 +18,7 @@
 <meta property="og:image" content="https://novel.mahjongx.net/assets/cover-ja.jpg"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="ja_JP"><meta property="og:site_name" content="雀覇伝奇">
 <link rel="icon" href="../assets/icon.png"><link rel="alternate" type="application/atom+xml" title="雀覇伝奇" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@400;700&family=Klee+One:wght@400;600&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=7519c997"><style>:root{--f-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;--f-sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;--f-kai:"Klee One","Hiragino Mincho ProN",serif;}</style>
+<link rel="stylesheet" href="../assets/style.css?v=98cb33d3"><style>:root{--f-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;--f-sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;--f-kai:"Klee One","Hiragino Mincho ProN",serif;}</style>
 <script>try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f)d.dataset.font=f;if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
 </head><body class="">
 <header class="bar"><div class="wrap"><a class="brand" href="index.html">雀覇伝奇</a>
@@ -22,22 +31,28 @@
 <main class="reader rules"><h1 class="ch">麻雀ルール図解：『雀覇伝奇』の万能牌と和了を読み解く</h1><article><p>このページでは、『雀覇伝奇』の一局一局を楽しむために、牌の見分け方から万能牌、点数計算まで、打ち手の選択を読み解きます。</p>
 <h3>百三十六枚の牌に映る天地</h3>
 <p>一組の牌は <strong>百三十六枚</strong>。同じ牌が四枚ずつあります。萬子・索子・筒子はそれぞれ一から九まであり、一種類につき三十六枚、合わせて百八枚。東・南・西・北の四種の風牌が十六枚、中・發・白の三元牌が十二枚で、一組になります。何も描かれていない白も、独立した一種類の牌です。</p>
+<figure class="tiles"><picture><img src="/assets/rules/deck.png" alt="一組の牌：萬子・索子・筒子の一〜九、東南西北の風牌、中・發・白の三元牌。各四枚、計百三十六枚。" loading="lazy"></picture><figcaption>一組の牌：萬子・索子・筒子の一〜九、東南西北の風牌、中・發・白の三元牌。各四枚、計百三十六枚。</figcaption></figure>
 <p>物語では、萬子・索子・筒子は財・木・金、四種の風牌は四方を象徴します。中・發・白が表すのは、それぞれ天の心、生命の力、澄みきった空白。これが作中の「天地の姿」です。対局を読むときは、まず牌の種類と数字を見分ければ十分です。</p>
 <p>洗って積み、順に牌をツモるための山が <strong>牌山</strong>、自分の持つ牌が手牌、捨てた牌が並ぶ場所が河です。河を見れば、すでに出た牌や相手の狙いを考えられます。第一章の「九巡目」は青嵐が牌をツモる経過に沿った数え方です。「四局」は四回ツモることではありません。</p>
 <h3>和了の基本は四組と一対</h3>
 <p>基本の形は、<strong>四組の面子と、一対の雀頭</strong>です。同じ種類で数字が三つ続く一萬・二萬・三萬などは順子。同じ牌三枚は刻子です。同じ牌四枚をそろえたカンの組も、一組として数えます。同じ牌二枚の対子を、雀頭として残します。</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/melds_m.png"><img src="/assets/rules/melds.png" alt="左から順子（一萬・二萬・三萬）、刻子（三筒が三枚）、カン（發が四枚）、対子（北が二枚）。" loading="lazy"></picture><figcaption>左から順子（一萬・二萬・三萬）、刻子（三筒が三枚）、カン（發が四枚）、対子（北が二枚）。</figcaption></figure>
 <p>カンがなければ、三枚ずつの四組と二枚の雀頭で十四枚。カンの組には実物の牌が四枚あるため、和了した手がいつも十四枚とは限りません。風牌と三元牌には数牌のような連番がなく、順子にはできません。</p>
 <p><strong>ポン</strong>は、手元の対子に誰かの捨て牌を加え、刻子を公開すること。<strong>カン</strong>は、規則に従って同じ牌四枚を一組にすることです。<strong>チー</strong>は、上家の捨て牌を手元の二枚と合わせ、順子を公開すること。推倒門ではポンとカンはできますが、チーはできません。自分でツモった牌で順子を作ることはできます。</p>
 <p>あと一枚で和了できる状態が <strong>テンパイ</strong>、その一枚に当たる牌が待ち牌です。<strong>門前</strong>とは、チー・ポン・明カンによる副露をしていない状態。第一章の青嵐は、自分で牌をツモりながら手を完成させます。</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/ting_m.png"><img src="/assets/rules/ting.png" alt="テンパイ：十三枚がそろい、あと一枚。六筒・七筒の待ちは五筒か八筒（右の薄い牌）で、どちらかが来れば和了。" loading="lazy"></picture><figcaption>テンパイ：十三枚がそろい、あと一枚。六筒・七筒の待ちは五筒か八筒（右の薄い牌）で、どちらかが来れば和了。</figcaption></figure>
 <p>四組と雀頭だけが和了形ではありません。第五章では <strong>七対子</strong>も認められ、七つの対子をそろえて和了します。足りない相方を万能牌で補うこともできます。</p>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/sevenpairs_m.png"><img src="/assets/rules/sevenpairs.png" alt="七対子：対子が六つ。最後の一対は、万能牌の中（金枠）が發の相方になります。" loading="lazy"></picture><figcaption>七対子：対子が六つ。最後の一対は、万能牌の中（金枠）が發の相方になります。</figcaption></figure>
 <h3>万能牌の決め方：めくった牌と同じ種類</h3>
 <p>推倒門では毎局、司籌が <strong>牌山の末尾から三枚目をめくって万能牌を定めます</strong>。出た牌と同じ種類が、その局の万能牌です。組を作る際、必要な任意の牌に代わることができます。第一章の最終局では中が出たため、中が万能牌となります。毎局必ず中と決まっているわけではありません。</p>
+<figure class="tiles"><picture><img src="/assets/rules/ghost.png" alt="万能牌の決め方：牌の山の後ろから三枚目をめくる。中が出たので、この局は中がすべて万能牌。" loading="lazy"></picture><figcaption>万能牌の決め方：牌の山の後ろから三枚目をめくる。中が出たので、この局は中がすべて万能牌。</figcaption></figure>
 <p>めくった一枚は牌山の末尾に残り、第一章ではツモれないと明記されています。青嵐の手元にある中は別の一枚です。万能牌は不足を補いますが、手牌の枚数を増やしません。最後の形を一組ずつ見てみましょう。</p>
 <blockquote><p>一萬・二萬・三萬で、一組目の順子。</p></blockquote>
 <blockquote><p>五索・六索・七索で、二組目の順子。</p></blockquote>
 <blockquote><p>三筒・三筒・三筒で、一組の刻子。</p></blockquote>
 <blockquote><p>六筒・七筒・中で、中を八筒として使い、三組目の順子。</p></blockquote>
 <blockquote><p>北・北で、雀頭。</p></blockquote>
+<figure class="tiles"><picture><source media="(max-width:600px)" srcset="/assets/rules/hand_m.png"><img src="/assets/rules/hand.png" alt="第一章、青嵐の和了形：順子三つ、刻子一つ、雀頭一対。金枠の中は万能牌で、八筒の代わり。" loading="lazy"></picture><figcaption>第一章、青嵐の和了形：順子三つ、刻子一つ、雀頭一対。金枠の中は万能牌で、八筒の代わり。</figcaption></figure>
 <p>順子が三組、刻子が一組、雀頭が一対。最後にツモった三筒が刻子を完成させ、中は筒子の順子を補っています。万能牌の働きは、このように具体的な牌の代わりとして確かめられます。</p>
 <h3>ツモと放銃：二十八点の負けから四点の勝ちへ</h3>
 <p>牌山から自分でツモった牌で和了するのが <strong>ツモ</strong>。他人の捨て牌で和了するのはロンで、その牌を捨ててしまうことが <strong>放銃</strong>です。第一章の青嵐が必要とするのは、ツモによる和了です。</p>
@@ -63,5 +78,5 @@
 <footer><p>『雀覇伝奇』© 2026 聴雨楼主　すべての権利を留保します。本サイトは本作を最初に公開する唯一の場所です。転載の際は出典を明記してください。</p>
 <p class="small"><a href="map.html">世界地図</a>　<a href="rules.html">麻雀のルール</a>　<a href="invite.html">紹介キャンペーン</a>　<a href="guestbook.html">読者の声</a></p>
 <p class="small">作者が創作を主導し、AIが文章の執筆を補助しています。 <a href="about.html#ai">詳しくはこちら</a></p></footer>
-<script src="../assets/app.js?v=af7aaa9e" defer></script>
+<script src="../assets/app.js?v=0a72649a" defer></script>
 </body></html>

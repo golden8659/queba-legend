@@ -106,8 +106,8 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .inv .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px;text-align:center}
 .inv .cta{border:0;cursor:pointer;font-family:inherit}.inv .cta[disabled]{opacity:.6}
 .inv .lab{font-size:13px;color:var(--gold);font-weight:600;margin:12px 0 6px;letter-spacing:.06em}
-.inv .linkrow{display:flex;gap:8px}.inv .linkrow input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
-.inv .linkrow button{flex-shrink:0;font:inherit;font-size:14px;padding:0 14px;border-radius:8px;border:1px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer}
+.inv .linkrow,.subpage .linkrow{display:flex;gap:8px}.inv .linkrow input,.subpage .linkrow input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+.inv .linkrow button,.subpage .linkrow button{flex-shrink:0;font:inherit;font-size:14px;padding:0 14px;border-radius:8px;border:1px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer}
 .inv .secret{font-family:Menlo,Consolas,monospace;font-size:22px;letter-spacing:.12em;color:var(--ink);margin:0;user-select:all}
 .inv .small{font-size:12px;margin:6px 0 0}#refout,#refqout{margin:10px 0 0;color:var(--gold);font-size:15px}
 .inv .rules{padding-left:1.4em;color:var(--muted);font-size:15px}.inv .rules li{margin-bottom:6px}
@@ -127,3 +127,16 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 :root[data-lang] .rules article p{text-indent:0}
 .mappage{max-width:1100px}.mappage .lead{color:var(--muted);text-align:center;margin:-12px 0 24px}
 .map{margin:0 0 28px}.map img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)}.map figcaption{text-align:center;color:var(--muted);font-size:14px;margin-top:8px}
+.toc h3.volh{margin:22px 0 10px;font-size:17px;color:var(--gold);font-weight:600;letter-spacing:.04em}.toc h3.volh:first-of-type{margin-top:4px}
+.mapview{position:relative;overflow:hidden;border-radius:8px;border:1px solid var(--line);background:#0b1020;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none}
+.mapview.zoomed{touch-action:none}.mapview.drag{cursor:grabbing}.mapview:focus-visible{box-shadow:0 0 0 2px var(--gold)}
+.mapview img{position:absolute;left:0;top:0;max-width:none;border:0;border-radius:0;transform-origin:0 0;will-change:transform;-webkit-user-drag:none}
+.mapbar{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.mapbar button{width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.mapbar span{color:var(--muted);font-size:13px;flex:1;min-width:160px}
+.subpage .ways{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.subpage .ways li{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.subpage .ways b{color:var(--gold);font-size:1.05em}.subpage .ways span{color:var(--ink);line-height:1.6}
+.subpage .ways .cta{align-self:flex-start}.subpage .linkrow{display:flex;gap:8px}.subpage .linkrow input{flex:1;min-width:0}
+.tiles{margin:18px 0 26px;padding:16px 14px 12px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.tiles img{display:block;width:100%;height:auto}.tiles figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--muted);text-align:center}
