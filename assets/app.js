@@ -11,7 +11,7 @@
   mark('[data-size]','data-size',size);
   // typeface
   var font=get('qb-font');if(!document.querySelector('[data-font="'+font+'"]'))font='serif';
-  function applyFont(v){font=v;root.dataset.font=v;set('qb-font',v);mark('[data-font]','data-font',v)}
+  function applyFont(v){font=v;if(window.qbFont)qbFont(v);root.dataset.font=v;set('qb-font',v);mark('[data-font]','data-font',v)}
   document.querySelectorAll('[data-font]').forEach(function(b){b.onclick=function(){applyFont(b.dataset.font)}});
   root.dataset.font=font;mark('[data-font]','data-font',font);
   // night mode
@@ -31,7 +31,7 @@
   function walk(fn){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n,i=0;while(n=w.nextNode()){if(n.parentNode.closest('.pop'))continue;fn(n,i++)}}
   function markZh(){document.querySelectorAll('[data-zh]').forEach(function(a){if(onZh&&(a.dataset.zh==='t')===trad)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
   function applyTrad(on){
-    if(!window.OpenCC)return;
+    if(!window.OpenCC){if(window.qbCC&&on)qbCC(function(){applyTrad(trad)});return}
     if(!orig){orig=[];walk(function(n){orig.push(n.nodeValue)})}
     var conv=window.OpenCC.Converter({from:'cn',to:'tw'});
     walk(function(n,i){n.nodeValue=on?conv(orig[i]):orig[i]});
