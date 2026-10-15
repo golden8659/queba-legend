@@ -116,3 +116,9 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .inv .tiers li{display:flex;gap:14px;align-items:baseline;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:10px 14px}
 .inv .tiers b{color:var(--gold);white-space:nowrap;min-width:4.5em}.inv .tiers span{color:var(--ink)}
 .inv .prog{display:block;margin-top:6px;color:var(--ink);font-size:14px}
+/* Equal-size cards: every card in a group takes the height of the tallest one, contents centred. */
+.cast,.ip,.toc ol,.inv .tiers{grid-auto-rows:1fr}
+.cast li,.ip>div{display:flex;flex-direction:column;justify-content:center}
+.toc li{display:flex}.toc li a,.toc li.soon{flex:1;align-items:center}
+.toc li.soon{font-size:15px}.toc li span{line-height:1.45}
+.inv .tiers li{align-items:center}

@@ -23,24 +23,23 @@
   var menus=document.querySelectorAll('details.menu');
   menus.forEach(function(m){m.addEventListener('toggle',function(){if(m.open)menus.forEach(function(o){if(o!==m)o.open=false})})});
   document.addEventListener('click',function(e){menus.forEach(function(m){if(m.open&&!m.contains(e.target))m.open=false})});
-  // Traditional Chinese (zh pages only): converts the page text in place with OpenCC.
-  var zt=document.getElementById('zh-t'),orig=null,trad=get('qb-zh')==='t';
+  // Simplified / Traditional Chinese. On zh pages the text is converted in place with OpenCC;
+  // from other languages the link opens the zh page and the stored choice applies there.
+  var orig=null,trad=get('qb-zh')==='t',onZh=root.dataset.lang==='zh';
   function walk(fn){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n,i=0;while(n=w.nextNode()){if(n.parentNode.closest('.pop'))continue;fn(n,i++)}}
+  function markZh(){document.querySelectorAll('[data-zh]').forEach(function(a){if(onZh&&(a.dataset.zh==='t')===trad)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
   function applyTrad(on){
     if(!window.OpenCC)return;
     if(!orig){orig=[];walk(function(n){orig.push(n.nodeValue)})}
     var conv=window.OpenCC.Converter({from:'cn',to:'tw'});
     walk(function(n,i){n.nodeValue=on?conv(orig[i]):orig[i]});
     root.lang=on?'zh-Hant':'zh-Hans';
-    if(zt)zt.setAttribute('aria-current',on?'true':'false');
-    var zs=document.querySelector('.pop a[lang="zh-Hans"]');if(zs){if(on)zs.removeAttribute('aria-current');else zs.setAttribute('aria-current','true')}
   }
-  if(zt){
-    window.addEventListener('load',function(){if(trad)applyTrad(true)});
-    zt.onclick=function(){trad=true;set('qb-zh','t');applyTrad(true);document.getElementById('langmenu').open=false};
-    var zs=document.querySelector('.pop a[lang="zh-Hans"]');
-    if(zs&&root.dataset.lang==='zh')zs.onclick=function(e){if(trad){e.preventDefault();trad=false;set('qb-zh','s');applyTrad(false);document.getElementById('langmenu').open=false}};
-  }
+  document.querySelectorAll('[data-zh]').forEach(function(a){a.onclick=function(e){
+    trad=a.dataset.zh==='t';set('qb-zh',trad?'t':'s');
+    if(onZh){e.preventDefault();applyTrad(trad);markZh();var m=document.getElementById('langmenu');if(m)m.open=false}
+  }});
+  if(onZh){markZh();window.addEventListener('load',function(){if(trad)applyTrad(true)})}
   // guestbook (stats.mahjongx.net/m): submit for moderation, list approved messages
   var gf=document.getElementById('gbform');
   if(gf){
