@@ -22,4 +22,6 @@
   var trad=get('qb-zh')==='t';
   window.addEventListener('load',function(){if(trad)apply(true)});
   if(zb)zb.onclick=function(){trad=!trad;set('qb-zh',trad?'t':'s');apply(trad)};
+  // visitor count (stats.mahjongx.net stores only a salted hash of the IP)
+  try{var d=JSON.stringify({p:location.pathname,r:document.referrer});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
 })();
