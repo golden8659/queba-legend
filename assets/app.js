@@ -90,7 +90,10 @@
   }catch(e){}
   var vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36),sec=0,depth=0,lastAct=Date.now(),sent=false,seen=0;
   function post(url,obj){var d=JSON.stringify(obj);try{if(navigator.sendBeacon)navigator.sendBeacon(url,d);else fetch(url,{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}}
-  function hit(){if(sent||me)return;sent=true;post('https://stats.mahjongx.net/h',{p:location.pathname,r:document.referrer,rc:rc,v:vid,u:uid,c:ch})}
+  function hit(){if(sent)return;sent=true;
+    if(me){post('https://stats.mahjongx.net/h',{me:1,u:uid});return}   // author's device: tells the server to ignore this device and network
+    post('https://stats.mahjongx.net/h',{p:location.pathname,r:document.referrer,rc:rc,v:vid,u:uid,c:ch})}
+  if(me)hit();
   function act(){lastAct=Date.now();hit()}
   ['scroll','mousemove','keydown','touchstart','click'].forEach(function(ev){addEventListener(ev,act,{passive:true})});
   function measure(){var de=document.documentElement,h=de.scrollHeight-innerHeight;var p=h>0?Math.round(scrollY/h*100):100;if(p>depth)depth=Math.min(100,p)}
@@ -98,7 +101,7 @@
   setInterval(function(){if(document.visibilityState==='visible'){seen++;if(seen>=3)hit()}},1000);
   // time on page: counts only while the tab is visible and the reader was active in the last 2 minutes
   setInterval(function(){if(document.visibilityState==='visible'&&Date.now()-lastAct<120000)sec+=5},5000);
-  function flush(){if(!sent||sec<1)return;post('https://stats.mahjongx.net/t',{v:vid,s:sec,d:depth})}
+  function flush(){if(!sent||me||sec<1)return;post('https://stats.mahjongx.net/t',{v:vid,s:sec,d:depth})}
   document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush()});
   addEventListener('pagehide',flush);setInterval(flush,60000);
 })();
