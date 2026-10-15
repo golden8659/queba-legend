@@ -122,3 +122,6 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .toc li{display:flex}.toc li a,.toc li.soon{flex:1;align-items:center}
 .toc li.soon{font-size:15px}.toc li span{line-height:1.45}
 .inv .tiers li{align-items:center}
+.ruleslink{text-align:center;margin:18px 0 0}.ruleslink a{font-weight:600}
+.rules article h2{color:var(--gold);font-size:1.15em;margin:1.8em 0 .6em;border:0;padding:0;text-align:left}
+:root[data-lang] .rules article p{text-indent:0}
