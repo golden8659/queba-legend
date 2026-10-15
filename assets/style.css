@@ -1,0 +1,36 @@
+:root{--bg:#f6f0e4;--paper:#fffaf0;--ink:#2a2320;--muted:#7d6f62;--gold:#a8782c;--accent:#9a2a1c;--line:#e3d5bd;--hero:#0f1530;--size:19px}
+:root[data-theme="dark"]{--bg:#0d1122;--paper:#141a31;--ink:#e9e1d1;--muted:#9a917f;--gold:#e0b45f;--accent:#e06a52;--line:#2a3150}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1122;--paper:#141a31;--ink:#e9e1d1;--muted:#9a917f;--gold:#e0b45f;--accent:#e06a52;--line:#2a3150}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Serif SC","Songti SC",serif;line-height:1.9}
+a{color:var(--accent);text-decoration:none}
+.bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--hero);color:#f1d99c;box-shadow:0 2px 12px #0005}
+.brand{color:#f1d99c;font-weight:900;font-size:20px;letter-spacing:.2em}
+.bar nav{display:flex;gap:14px;align-items:center}.bar nav a{color:#e8dcc0;font-size:15px}
+.bar button{background:none;border:1px solid #f1d99c66;color:#f1d99c;border-radius:6px;padding:2px 9px;font:inherit;font-size:14px;cursor:pointer}
+.hero{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:40px;align-items:center;max-width:1040px;margin:0 auto;padding:40px 16px}
+.hero img{width:100%;height:auto;border-radius:10px;box-shadow:0 18px 40px #0006}
+.tag{font-size:26px;font-weight:600;line-height:1.6;margin:0 0 6px}.tag.en{font-family:Cinzel,serif;font-size:16px;color:var(--muted);letter-spacing:.04em;margin-bottom:28px}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:12px 34px;border-radius:999px;font-size:18px;letter-spacing:.2em;box-shadow:0 6px 18px #9a2a1c55}
+.cta.off{background:var(--muted)}
+.intro,.toc{max-width:760px;margin:0 auto;padding:8px 16px 24px}
+h2{font-size:22px;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:8px;letter-spacing:.15em}
+details{margin-top:12px;color:var(--muted)}summary{cursor:pointer;color:var(--gold);font-family:Cinzel,serif}
+.toc ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.toc li a,.toc li.soon{display:block;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;color:var(--ink)}
+.toc b{color:var(--gold);margin-right:10px;font-weight:600}.toc li.soon{color:var(--muted);font-size:14px}
+.reader{max-width:720px;margin:0 auto;padding:24px 16px 40px}
+.tools{display:flex;justify-content:flex-end;gap:8px}.tools button{background:var(--paper);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:2px 10px;cursor:pointer}
+h1.ch{text-align:center;font-size:30px;font-weight:900;margin:24px 0 32px;letter-spacing:.12em}h1.ch span{display:block;font-size:22px;font-weight:600;color:var(--gold);margin-top:6px}
+article{font-size:var(--size)}article p{margin:0 0 1.1em;text-indent:2em}
+article blockquote{margin:1.4em 0;padding:12px 20px;border-left:3px solid var(--gold);background:var(--paper)}article blockquote p{text-indent:0;margin:.2em 0}
+.break{text-align:center;color:var(--gold);margin:1.8em 0;letter-spacing:1em;font-size:12px}
+.pager{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:40px;padding-top:18px}.muted{color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;border-top:1px solid var(--line)}footer .small{font-size:12px}
+@media (max-width:760px){.hero{grid-template-columns:1fr;gap:20px;padding:20px 16px}.hero img{max-width:320px;margin:0 auto;display:block}.pitch{text-align:center}.tag{font-size:21px}}
+.vol{color:var(--gold);letter-spacing:.3em;font-weight:600;margin:0 0 10px}
+.when{color:var(--muted);font-size:14px;margin:16px 0 0}
+.cast{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cast li{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;line-height:1.6;color:var(--muted)}
+.cast b{display:block;color:var(--ink);font-size:16px}
+@media (max-width:760px){.cast{text-align:left}}
