@@ -15,6 +15,7 @@ h1,h2,.tag,.vol{text-wrap:balance}
 .bar nav{display:flex;gap:6px;align-items:center}
 .bar nav>a,.menu>summary{display:inline-flex;align-items:center;justify-content:center;height:34px;padding:0 10px;color:#e8dcc0;font-size:15px;line-height:1;border-radius:6px}
 .menu{position:relative}.menu>summary{list-style:none;cursor:pointer;border:1px solid #f1d99c55;min-width:40px;font-family:Georgia,serif;user-select:none}
+.menu>summary svg{display:block}
 .menu>summary::-webkit-details-marker{display:none}.menu[open]>summary{background:#f1d99c22}
 .pop{position:absolute;right:0;top:42px;min-width:180px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px #0005;padding:8px;display:flex;flex-direction:column;z-index:10}
 .pop a,.pop>button{display:block;text-align:left;padding:8px 10px;border-radius:6px;color:var(--ink);font:inherit;font-size:15px;background:none;border:0;cursor:pointer}
@@ -41,6 +42,7 @@ h1,h2,.tag,.vol{text-wrap:balance}
 .intro>*{max-width:760px}
 h2{font-size:22px;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:8px;margin:24px 0 16px;letter-spacing:.06em}
 .intro p{font-size:var(--size)}
+.intro p.pull{text-align:center!important;font-weight:700;color:var(--gold);margin:1.4em 0 .4em;text-wrap:balance}
 p{margin:0 0 1em}
 :root[data-lang="zh"] article p,:root[data-lang="zh"] .intro p,:root[data-lang="ja"] article p,:root[data-lang="ja"] .intro p{text-align:justify}
 .toc ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
@@ -67,7 +69,9 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
  .hero{grid-template-columns:1fr;gap:24px;padding-top:20px;padding-bottom:20px}
  .hero img{max-width:300px;margin:0 auto}
  .pitch{text-align:center}.tag{font-size:21px}
- .cast li{text-align:left}
+ .cast li{text-align:center}
+ h2{text-align:center}
+ .toc li a,.toc li.soon{justify-content:center}
  .brand{font-size:18px}.bar nav>a{padding:0 7px}
  h1.ch{font-size:26px}
 }
