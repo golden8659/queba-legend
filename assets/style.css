@@ -148,6 +148,9 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
  .mappage .lead{font-size:13px;line-height:1.5;margin:0 0 10px}
  .worldmap{height:calc(100svh - 56px - 130px);min-height:360px}
 }
-/* zoom buttons sit on the map itself (right edge, vertically centred), not on the decorative band at the bottom */
-.worldmap .qm-ui{top:50%!important;bottom:auto!important;right:12px!important;transform:translateY(-50%)}
-.worldmap .qm-hint{bottom:16%!important;left:50%!important;transform:translateX(-50%);white-space:nowrap}
+/* the world map is 3:2; on wide screens the frame takes that shape so there are no side bars */
+@media (min-width:601px){.worldmap{height:min(78vh,900px);width:min(100%,calc(min(78vh,900px)*1.5));margin:0 auto}}
+/* place names a size larger on desktop so they read at a glance */
+@media (min-width:601px){.worldmap .qm-l.lv1{font-size:24px}.worldmap .qm-l.lv2{font-size:17px}.worldmap .qm-l.lv3{font-size:14px}}
+/* place names appear at once (no fade), so they are there the moment the map opens */
+.worldmap .qm-l{transition:none!important}
