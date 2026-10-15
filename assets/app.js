@@ -73,17 +73,29 @@
     document.getElementById('refcopy').onclick=function(){var i=document.getElementById('reflink'),b=this;i.select();(navigator.clipboard?navigator.clipboard.writeText(i.value):Promise.reject()).catch(function(){document.execCommand('copy')}).then(function(){var o=b.textContent;b.textContent=RS.ref_copied;setTimeout(function(){b.textContent=o},1500)})};
     document.getElementById('refqbtn').onclick=function(){var v=qin.value.trim().toUpperCase();if(v)check(v,qout)};
   }
-  // visitor count (stats.mahjongx.net stores only a salted hash of the IP)
-  var rc=null;try{var q=new URLSearchParams(location.search).get('r');rc=get('qb-rc');if(!rc&&q&&/^[A-HJ-NP-Z2-9]{6}$/.test(q.toUpperCase())){rc=q.toUpperCase();set('qb-rc',rc)}}catch(e){}
-  // time on page: counts only while the tab is visible and the reader was active in the last 2 minutes
-  var vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36),sec=0,depth=0,lastAct=Date.now();
-  function act(){lastAct=Date.now()}
+  // Visitor count (stats.mahjongx.net). People are counted per browser via a random id kept in this browser
+  // (no personal data), so a changing IP does not count one reader twice. A view is sent only after
+  // 3 seconds of visible time or a real interaction, which keeps most page-fetching robots out.
+  // ?me=1 marks this device as the author's (never counted); ?me=0 undoes it.
+  var me=false,uid=null,rc=null;
+  try{var qs=new URLSearchParams(location.search);
+    if(qs.get('me')==='1'){set('qb-me','1');var tip=document.createElement('div');tip.textContent='本设备已设为作者设备：访问不计入统计';tip.style.cssText='position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#0f1530;color:#f1d99c;padding:10px 16px;border-radius:8px;z-index:99;font-size:14px';document.body.appendChild(tip);setTimeout(function(){tip.remove()},5000)}
+    if(qs.get('me')==='0'){try{localStorage.removeItem('qb-me')}catch(e){}}
+    me=get('qb-me')==='1';
+    uid=get('qb-uid');if(!uid||!/^[a-z0-9]{12,32}$/.test(uid)){uid='';var a=new Uint8Array(12);crypto.getRandomValues(a);for(var i=0;i<12;i++)uid+=('0'+a[i].toString(36)).slice(-2);set('qb-uid',uid)}
+    var q=qs.get('r');rc=get('qb-rc');if(!rc&&q&&/^[A-HJ-NP-Z2-9]{6}$/.test(q.toUpperCase())){rc=q.toUpperCase();set('qb-rc',rc)}
+  }catch(e){}
+  var vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36),sec=0,depth=0,lastAct=Date.now(),sent=false,seen=0;
+  function post(url,obj){var d=JSON.stringify(obj);try{if(navigator.sendBeacon)navigator.sendBeacon(url,d);else fetch(url,{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}}
+  function hit(){if(sent||me)return;sent=true;post('https://stats.mahjongx.net/h',{p:location.pathname,r:document.referrer,rc:rc,v:vid,u:uid})}
+  function act(){lastAct=Date.now();hit()}
   ['scroll','mousemove','keydown','touchstart','click'].forEach(function(ev){addEventListener(ev,act,{passive:true})});
-  function measure(){var de=document.documentElement,h=de.scrollHeight-innerHeight;var p=h>0?Math.round((scrollY+0)/h*100):100;if(p>depth)depth=Math.min(100,p)}
+  function measure(){var de=document.documentElement,h=de.scrollHeight-innerHeight;var p=h>0?Math.round(scrollY/h*100):100;if(p>depth)depth=Math.min(100,p)}
   addEventListener('scroll',measure,{passive:true});setTimeout(measure,1500);
+  setInterval(function(){if(document.visibilityState==='visible'){seen++;if(seen>=3)hit()}},1000);
+  // time on page: counts only while the tab is visible and the reader was active in the last 2 minutes
   setInterval(function(){if(document.visibilityState==='visible'&&Date.now()-lastAct<120000)sec+=5},5000);
-  function flush(){if(sec<1)return;try{navigator.sendBeacon('https://stats.mahjongx.net/t',JSON.stringify({v:vid,s:sec,d:depth}))}catch(e){}}
+  function flush(){if(!sent||sec<1)return;post('https://stats.mahjongx.net/t',{v:vid,s:sec,d:depth})}
   document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush()});
   addEventListener('pagehide',flush);setInterval(flush,60000);
-  try{var d=JSON.stringify({p:location.pathname,r:document.referrer,rc:rc,v:vid});if(navigator.sendBeacon)navigator.sendBeacon('https://stats.mahjongx.net/h',d);else fetch('https://stats.mahjongx.net/h',{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}
 })();
