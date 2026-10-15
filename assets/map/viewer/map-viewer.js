@@ -13,7 +13,7 @@
 .qm-stage img{position:absolute;transition:opacity .45s;left:0;top:0;max-width:none;pointer-events:none;-webkit-user-drag:none}
 .qm-labels{position:absolute;inset:0;pointer-events:none}
 .qm-l{position:absolute;white-space:nowrap;color:#fffaf0;font-family:"Noto Serif SC","Noto Serif JP","Noto Serif KR","Songti SC",serif;font-weight:700;letter-spacing:.14em;
- text-shadow:0 1px 2px rgba(0,0,0,.75),0 0 6px rgba(0,0,0,.45),0 0 14px rgba(0,0,0,.25);line-height:1;opacity:0}
+ text-shadow:0 0 2px rgba(0,0,0,.95),0 0 4px rgba(0,0,0,.85),0 1px 6px rgba(0,0,0,.7),0 0 14px rgba(0,0,0,.35);line-height:1;opacity:0}
 .qm-l.place::before{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.45),0 0 8px rgba(255,255,255,.8)}
 .qm-l.realm{font-size:26px;letter-spacing:.5em;opacity:.85}
 .qm-l.region{font-size:15px;letter-spacing:.32em;font-weight:500;color:#f5f1e6;font-style:normal}
