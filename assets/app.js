@@ -56,7 +56,7 @@
     load();
     gf.onsubmit=function(e){e.preventDefault();var b=gf.querySelector('button');b.disabled=true;out.textContent='';
       fetch(API,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({name:gf.elements["name"].value,body:gf.elements["body"].value,hp:gf.elements["hp"].value,lang:lang})})
-      .then(function(r){return r.json()}).then(function(d){if(d.ok){out.textContent=S.gb_sent;gf.elements["body"].value=""else out.textContent=d.err==='rate'?S.gb_rate:d.err==='short'?S.gb_short:S.gb_err})
+      .then(function(r){return r.json()}).then(function(d){if(d.ok){out.textContent=S.gb_sent;gf.elements["body"].value="";}else out.textContent=d.err==='rate'?S.gb_rate:d.err==='short'?S.gb_short:S.gb_err})
       .catch(function(){out.textContent=S.gb_err}).then(function(){b.disabled=false})};
   }
   // referral page: create a personal link, show it, check progress by secret
