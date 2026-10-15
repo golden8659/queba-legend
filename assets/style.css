@@ -140,3 +140,4 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .subpage .ways .cta{align-self:flex-start}.subpage .linkrow{display:flex;gap:8px}.subpage .linkrow input{flex:1;min-width:0}
 .tiles{margin:18px 0 26px;padding:16px 14px 12px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
 .tiles img{display:block;width:100%;height:auto}.tiles figcaption{margin-top:10px;font-size:14px;line-height:1.6;color:var(--muted);text-align:center}
+.still{margin:28px 0}.still img{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 6px 22px #0003}
