@@ -1,3 +1,60 @@
+/* 官网 additions to the map window's viewer (author 10-15: the map did not load on iPhone, pictures too slow).
+   build.py prepends this file to the site's copy of map-viewer.js and makes three small hooks in that copy:
+   - load(): a picture sized for the screen (2048 wide on phones, 3072 elsewhere; prep_marks.py) instead of the
+     6144x4096 original, with a progress line and a retry message, never a blank box;
+   - tiles(): zoomed in past that picture's sharpness, 1024px tiles of the full picture for the part on screen only
+     (tiles far off screen are dropped, so a phone never holds the whole 25-megapixel picture);
+   - the viewer keeps measuring in full-picture units (layout.json world_size), so zoom range and labels are unchanged.
+   The map window's own map-viewer.js and pictures are not modified. */
+window.QM_SITE = (function () {
+  var TILE = 1024;
+  function load(world, base, N, el, opt) {
+    var phone = Math.min(screen.width, screen.height) < 600, tier = phone ? 2048 : 3072, ui = opt.ui || {};
+    world.dataset.tier = tier;
+    var box = document.createElement('div'); box.className = 'qm-load'; box.setAttribute('role', 'status'); el.appendChild(box);
+    function fail() {
+      box.textContent = (ui.failed || '地图加载失败，请检查网络。') + ' ';
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = ui.retry || '重试'; b.onclick = go; box.appendChild(b); box.hidden = false;
+    }
+    function go() {
+      box.hidden = false; box.textContent = (ui.loading || '地图加载中…');
+      var xhr = new XMLHttpRequest(); xhr.open('GET', base + 'world_ch' + N + '_' + tier + '.jpg'); xhr.responseType = 'blob';
+      xhr.onprogress = function (e) { if (e.lengthComputable) box.textContent = (ui.loading || '地图加载中…') + ' ' + Math.round(e.loaded / e.total * 100) + '%'; };
+      xhr.onerror = fail;
+      xhr.onload = function () {
+        if (xhr.status !== 200 || !xhr.response) return fail();
+        world.onerror = fail; world.addEventListener('load', function () { box.hidden = true; }, {once: true});
+        world.src = URL.createObjectURL(xhr.response);
+      };
+      xhr.send();
+    }
+    go();
+  }
+  function tiles(stage, world, x, y, s, vw, vh, base, N, W, H) {
+    var tier = +world.dataset.tier || W, dpr = Math.min(window.devicePixelRatio || 1, 3);
+    var lay = stage.querySelector('.qm-tiles');
+    if (!lay) {
+      if (s * dpr <= tier / W * 1.15) return;            // the screen-sized picture is still sharp enough
+      lay = document.createElement('div'); lay.className = 'qm-tiles'; lay.style.cssText = 'position:absolute;left:0;top:0';
+      stage.insertBefore(lay, world.nextSibling);
+    }
+    lay.style.opacity = world.style.opacity === '0' ? 0 : 1;
+    var on = s * dpr > tier / W * 1.15, want = {};
+    if (on) {
+      var c0 = Math.floor(-x / s / TILE), c1 = Math.floor((vw - x - 1) / s / TILE), r0 = Math.floor(-y / s / TILE), r1 = Math.floor((vh - y - 1) / s / TILE);   // on-screen tiles only
+      for (var r = Math.max(0, r0); r <= Math.min(Math.ceil(H / TILE) - 1, r1); r++)
+        for (var c = Math.max(0, c0); c <= Math.min(Math.ceil(W / TILE) - 1, c1); c++) want[r + '_' + c] = 1;
+    }
+    [].slice.call(lay.children).forEach(function (t) { if (!want[t.dataset.k]) lay.removeChild(t); else delete want[t.dataset.k]; });
+    Object.keys(want).forEach(function (k) {
+      var p = k.split('_'), t = new Image(); t.dataset.k = k; t.alt = ''; t.decoding = 'async';
+      t.style.cssText = 'position:absolute;left:' + p[1] * TILE + 'px;top:' + p[0] * TILE + 'px;width:' + TILE + 'px;height:' + TILE + 'px;max-width:none';
+      t.src = base + 'world_ch' + N + '_t' + k + '.jpg'; lay.appendChild(t);
+    });
+  }
+  return {load: load, tiles: tiles};
+})();
+
 /* 雀霸传奇 · 世界地图无极缩放查看器（无依赖）
  * 用法：<div id="map" style="height:80vh"></div>
  *       <script src="map-viewer.js"></script>
@@ -34,7 +91,7 @@
     el.classList.add('qm'); el.innerHTML = '';
     const stage = document.createElement('div'); stage.className = 'qm-stage';
     const world = new Image(), detail = new Image(); detail.onload = () => draw();
-    world.src = base + `world_ch${N}.jpg`; world.alt = opt.alt || '';
+    QM_SITE.load(world, base, N, el, opt); world.alt = opt.alt || '';
     const spot = document.createElement('div'); spot.className = 'qm-spot';
     stage.appendChild(world); stage.appendChild(detail); stage.appendChild(spot); el.appendChild(stage);
     const layer = document.createElement('div'); layer.className = 'qm-labels'; el.appendChild(layer);
@@ -89,6 +146,7 @@
       const inDetail = mode === 'detail' && ready;
       detail.style.opacity = inDetail ? 1 : 0; world.style.opacity = inDetail ? 0 : 1;
       }
+      QM_SITE.tiles(stage, world, x, y, s, vw(), vh(), base, N, W, H);
       // 地名：按层级与缩放显示；互相压住的让开（层级高的优先）
       const placed = [];
       for (const n of nodes) {
@@ -129,7 +187,7 @@
     Promise.all([fetch(base + 'layout.json').then(r => r.json()), fetch(base + 'labels.json').then(r => r.json()),
                  new Promise(r => world.complete ? r() : (world.onload = r)).then(() => world.decode ? world.decode().catch(() => {}) : 0),
                  document.fonts ? document.fonts.ready : 0]).then(([lay, lab]) => {
-      L = lay; LB = lab; W = world.naturalWidth; H = world.naturalHeight;
+      L = lay; LB = lab; W = (L.world_size || [])[0] || world.naturalWidth; H = (L.world_size || [])[1] || world.naturalHeight;
       Object.assign(world.style, {width: W + 'px', height: H + 'px'});
       if (L.detail_rect) { const r = L.detail_rect; Object.assign(detail.style, {left: r[0] * W + 'px', top: r[1] * H + 'px', width: (r[2] - r[0]) * W + 'px', height: (r[3] - r[1]) * H + 'px'}); }
       const order = {1: 0, 0: 1, 2: 2, 3: 3};

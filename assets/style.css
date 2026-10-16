@@ -187,3 +187,6 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none}
 picture,.still{position:relative;display:block}
 img:not(a img){pointer-events:none}
 picture::after,.still::after{content:"";position:absolute;inset:0;background:transparent}
+/* map loading line / retry (map_site.js) */
+.qm-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;background:#0d1122d9;color:#f1d99c;padding:10px 16px;border-radius:8px;font-size:15px;text-align:center;max-width:80%}
+.qm-load button{margin-left:6px;background:#e0b45f;color:#0d1122;border:0;border-radius:6px;padding:4px 12px;font:inherit;cursor:pointer}
