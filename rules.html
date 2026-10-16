@@ -1,25 +1,28 @@
 <!doctype html>
 <html lang="zh-Hans" data-lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>麻将规则图解：看懂《雀霸传奇》的鬼牌与胡牌</title>
+<meta name="description" content="看懂《雀霸传奇》的麻将规则：136张牌、四组加一对、翻牌定鬼、自摸与点炮，算清陶家从负28分到净胜4分的翻盘。">
+<link rel="canonical" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="zh-Hant" href="https://novel.mahjongx.net/zh-hant/rules.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/rules.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/rules.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/rules.html">
 <script>(function(){try{var ls=localStorage,q=new URLSearchParams(location.search),ua=navigator.userAgent,
-cur=document.documentElement.dataset.lang;if(ls.getItem('qb-lang')||q.has('zh')||q.has('lang')||navigator.webdriver||
+cur=document.documentElement.dataset.lang,zq=q.get('zh'),alt=function(w){return document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans','zh-Hant':'zh-Hant',en:'en',ja:'ja',ko:'ko'})[w]+'"]')},
+jump=function(a){if(a)location.replace(new URL(a.href).pathname+location.hash)};
+if(zq==='t'||zq==='s')ls.setItem('qb-zh',zq);
+if(cur==='zh'&&ls.getItem('qb-zh')==='t')return jump(alt('zh-Hant'));
+if(cur==='zh-Hant'&&zq==='s')return jump(alt('zh'));
+if(ls.getItem('qb-lang')||zq||q.has('lang')||navigator.webdriver||
 /bot|crawl|spider|slurp|facebookexternalhit|preview|lighthouse|headless/i.test(ua))return;
 if(document.referrer&&new URL(document.referrer).host===location.host)return;
 var p=((navigator.languages&&navigator.languages[0])||navigator.language||'en').toLowerCase(),
-w=/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
-if(w==='zh'&&/^zh-(tw|hk|mo|hant)/.test(p)&&!ls.getItem('qb-zh'))ls.setItem('qb-zh','t');if(w===cur)return;
-var a=document.querySelector('link[rel=alternate][hreflang="'+({zh:'zh-Hans',en:'en',ja:'ja',ko:'ko'})[w]+'"]');
-if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
-<title>麻将规则图解：看懂《雀霸传奇》的鬼牌与胡牌</title>
-<meta name="description" content="看懂《雀霸传奇》的麻将规则：136张牌、四组加一对、翻牌定鬼、自摸与点炮，算清陶家从负28分到净胜4分的翻盘。">
-<link rel="canonical" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="zh-Hans" href="https://novel.mahjongx.net/rules.html"><link rel="alternate" hreflang="en" href="https://novel.mahjongx.net/en/rules.html"><link rel="alternate" hreflang="ja" href="https://novel.mahjongx.net/ja/rules.html"><link rel="alternate" hreflang="ko" href="https://novel.mahjongx.net/ko/rules.html">
+w=/^zh-(tw|hk|mo|hant)/.test(p)?'zh-Hant':/^zh/.test(p)?'zh':/^ja/.test(p)?'ja':/^ko/.test(p)?'ko':'en';ls.setItem('qb-lang','auto-'+w);
+if(w===cur)return;var a=alt(w);if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}catch(e){}})();</script>
 <meta property="og:type" content="book"><meta property="og:title" content="麻将规则图解：看懂《雀霸传奇》的鬼牌与胡牌">
 <meta property="og:description" content="看懂《雀霸传奇》的麻将规则：136张牌、四组加一对、翻牌定鬼、自摸与点炮，算清陶家从负28分到净胜4分的翻盘。"><meta property="og:url" content="https://novel.mahjongx.net/rules.html">
 <meta property="og:image" content="https://novel.mahjongx.net/assets/og/zh-rules.jpg?v=5239d6b5"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="zh_CN"><meta property="og:site_name" content="雀霸传奇">
 <link rel="icon" href="assets/icon.png"><link rel="alternate" type="application/atom+xml" title="雀霸传奇" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap"></noscript>
 <link rel="stylesheet" href="assets/style.css?v=d1ba37c6"><style>:root{--f-serif:"Noto Serif SC","Songti SC","STSong",serif;--f-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;--f-kai:"LXGW WenKai","Kaiti SC","STKaiti","KaiTi",serif;}</style>
-<script>window.qbFonts={"sans": "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap", "kai": "https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css"};window.qbFont=function(k){var u=qbFonts[k];if(!u||document.querySelector('link[data-qbf="'+k+'"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=u;l.dataset.qbf=k;document.head.appendChild(l)};window.qbCC=function(cb){if(window.OpenCC)return cb&&cb();(window.qbCCq=window.qbCCq||[]).push(cb);if(window.qbCCs)return;window.qbCCs=1;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/cn2t.js';s.onload=function(){(window.qbCCq||[]).forEach(function(f){f&&f()});window.qbCCq=[]};document.head.appendChild(s)};try{var zq=new URLSearchParams(location.search).get('zh');if(zq==='t'||(zq!=='s'&&localStorage.getItem('qb-zh')==='t'))qbCC()}catch(e){}try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f){d.dataset.font=f;qbFont(f)}if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
+<script>window.qbFonts={"sans": "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap", "kai": "https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css"};window.qbFont=function(k){var u=qbFonts[k];if(!u||document.querySelector('link[data-qbf="'+k+'"]'))return;var l=document.createElement('link');l.rel='stylesheet';l.href=u;l.dataset.qbf=k;document.head.appendChild(l)};try{var d=document.documentElement,f=localStorage.getItem('qb-font'),z=localStorage.getItem('qb-size'),t=localStorage.getItem('qb-theme');if(f){d.dataset.font=f;qbFont(f)}if(z)d.style.setProperty('--size',z+'px');if(t)d.dataset.theme=t}catch(e){}</script>
 </head><body class="" data-copy="——摘自《雀霸传奇》，听雨楼主 著
 原文：https://novel.mahjongx.net/rules.html
 © 2026 听雨楼主　保留所有权利，未经授权请勿转载。">
@@ -29,7 +32,7 @@ if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}ca
 <p>字号</p><div class="seg"><button type="button" data-size="16" style="font-size:12px">A</button><button type="button" data-size="18" style="font-size:14px">A</button><button type="button" data-size="20" style="font-size:16px">A</button><button type="button" data-size="23" style="font-size:18px">A</button><button type="button" data-size="26" style="font-size:20px">A</button></div>
 <p>字体</p><div class="seg"><button type="button" data-font="serif">宋体</button><button type="button" data-font="sans">黑体</button><button type="button" data-font="kai">楷体</button></div>
 <p>夜间模式</p><div class="seg"><button type="button" data-theme-set="light">☀</button><button type="button" data-theme-set="dark">☾</button></div>
-</div></details><details class="menu" id="langmenu"><summary title="语言" aria-label="语言"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg></summary><div class="pop"><a href="rules.html" lang="zh-Hans" data-zh="s" aria-current="true">简体中文</a><a href="rules.html" lang="zh-Hant" data-zh="t">繁體中文</a><a href="en/rules.html" lang="en">English</a><a href="ja/rules.html" lang="ja">日本語</a><a href="ko/rules.html" lang="ko">한국어</a></div></details></nav></div></header>
+</div></details><details class="menu" id="langmenu"><summary title="语言" aria-label="语言"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg></summary><div class="pop"><a href="rules.html" lang="zh-Hans" data-zh="s" aria-current="true">简体中文</a><a href="zh-hant/rules.html" lang="zh-Hant" data-zh="t">繁體中文</a><a href="en/rules.html" lang="en">English</a><a href="ja/rules.html" lang="ja">日本語</a><a href="ko/rules.html" lang="ko">한국어</a></div></details></nav></div></header>
 <main class="reader rules"><h1 class="ch">麻将规则图解：看懂《雀霸传奇》的鬼牌与胡牌</h1><article><p>这一页帮你看懂《雀霸传奇》里的每一局牌，从认牌、组牌到鬼牌与计分，跟上人物每一次摸牌和取舍。</p>
 <h3>一副牌：一百三十六张里的天地之象</h3>
 <p>一副牌共 <strong>136 张</strong>，每种牌各有四张。万子、条子、筒子各从一到九，每门三十六张，合计一百零八张。再加东、南、西、北四种风牌共十六张，以及中、发、白三种三元牌共十二张，正好凑齐一副。白板虽然牌面空白，也是一种正式的牌。</p>
@@ -80,5 +83,5 @@ if(a)location.replace(new URL(a.href).pathname+location.search+location.hash)}ca
 <footer><p>《雀霸传奇》© 2026 听雨楼主　保留所有权利。本站为本作唯一首发地，未经授权禁止转载、摘编或用于 AI 训练，分享请转发本站链接。</p>
 <p class="small"><a href="map.html">世界地图</a>　<a href="rules.html">麻将规则</a>　<a href="invite.html">推广有礼</a>　<a href="guestbook.html">读者留言</a>　<a href="privacy.html">隐私政策</a></p>
 <p class="small">本作由作者主创，AI 辅助执笔。 <a href="about.html#ai">说明</a>　<a href="about.html#copyright">版权声明</a></p></footer>
-<script src="assets/app.js?v=0c4e528e" defer></script>
+<script src="assets/app.js?v=089732e1" defer></script>
 </body></html>

@@ -23,25 +23,6 @@
   var menus=document.querySelectorAll('details.menu');
   menus.forEach(function(m){m.addEventListener('toggle',function(){if(m.open)menus.forEach(function(o){if(o!==m)o.open=false})})});
   document.addEventListener('click',function(e){menus.forEach(function(m){if(m.open&&!m.contains(e.target))m.open=false})});
-  // Simplified / Traditional Chinese. On zh pages the text is converted in place with OpenCC;
-  // from other languages the link opens the zh page and the stored choice applies there.
-  // ?zh=t / ?zh=s in a link picks Traditional / Simplified for this reader (used by Taiwan / Hong Kong posts)
-  try{var zq=new URLSearchParams(location.search).get('zh');if(zq==='t'||zq==='s')set('qb-zh',zq)}catch(e){}
-  var orig=null,trad=get('qb-zh')==='t',onZh=root.dataset.lang==='zh';
-  function walk(fn){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n,i=0;while(n=w.nextNode()){if(n.parentNode.closest('.pop'))continue;fn(n,i++)}}
-  function markZh(){document.querySelectorAll('[data-zh]').forEach(function(a){if(onZh&&(a.dataset.zh==='t')===trad)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
-  function applyTrad(on){
-    if(!window.OpenCC){if(window.qbCC&&on)qbCC(function(){applyTrad(trad)});return}
-    if(!orig){orig=[];walk(function(n){orig.push(n.nodeValue)})}
-    var conv=window.OpenCC.Converter({from:'cn',to:'tw'});
-    walk(function(n,i){n.nodeValue=on?conv(orig[i]):orig[i]});
-    root.lang=on?'zh-Hant':'zh-Hans';
-  }
-  document.querySelectorAll('[data-zh]').forEach(function(a){a.onclick=function(e){
-    trad=a.dataset.zh==='t';set('qb-zh',trad?'t':'s');
-    if(onZh){e.preventDefault();applyTrad(trad);markZh();var m=document.getElementById('langmenu');if(m)m.open=false}
-  }});
-  if(onZh){markZh();window.addEventListener('load',function(){if(trad)applyTrad(true)})}
   // guestbook (stats.mahjongx.net/m): submit for moderation, list approved messages
   var gf=document.getElementById('gbform');
   if(gf){
@@ -144,9 +125,10 @@
     var sel=window.getSelection(),txt=sel?String(sel):'';
     if(!txt||!e.clipboardData||field(document.activeElement)||field(sel.anchorNode))return;
     var note=document.body.dataset.copy||'';
-    if(note&&root.lang==='zh-Hant'&&window.OpenCC)try{note=OpenCC.Converter({from:'cn',to:'tw'})(note)}catch(x){}
     e.clipboardData.setData('text/plain',txt.replace(/\s+$/,'')+'\n\n'+note);e.preventDefault()});
 
   // a language picked from the menu is remembered, so the first-visit auto-switch never overrides it
-  document.querySelectorAll('#langmenu .pop a').forEach(function(a){a.addEventListener('click',function(){set('qb-lang',a.dataset.zh?'zh':(a.getAttribute('lang')||'').slice(0,2))})});
+  // (Simplified / Traditional are separate pages since 10-15: zh at the root, zh-Hant under /zh-hant/; qb-zh keeps the choice
+  // so old ?zh=t links and the next visit open the same script)
+  document.querySelectorAll('#langmenu .pop a').forEach(function(a){a.addEventListener('click',function(){if(a.dataset.zh)set('qb-zh',a.dataset.zh);set('qb-lang',a.dataset.zh?(a.dataset.zh==='t'?'zh-Hant':'zh'):(a.getAttribute('lang')||'').slice(0,2))})});
 })();
