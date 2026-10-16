@@ -117,7 +117,8 @@
   // right-click / long-press. Form fields (guestbook, survey, invite link) still copy normally. Text copied anyway
   // (select-all, reader tools) gets the source and copyright notice appended. This only stops casual copying:
   // screenshots and developer tools still work, and the text stays in the HTML for search engines and screen readers.
-  function field(t){t=t&&t.nodeType===1?t:t&&t.parentNode;return !!(t&&t.closest&&t.closest('input,textarea,select,[contenteditable]'))}
+  // (the login-only developer preview is a review desk: no copy protection there — root.dataset.dev)
+  function field(t){if(root.dataset.dev)return true;t=t&&t.nodeType===1?t:t&&t.parentNode;return !!(t&&t.closest&&t.closest('input,textarea,select,[contenteditable]'))}
   document.addEventListener('contextmenu',function(e){var t=e.target;if(field(t))return;if(t.closest&&t.closest('a')&&!t.closest('img,picture'))return;e.preventDefault()});
   document.addEventListener('dragstart',function(e){if(!field(e.target))e.preventDefault()});
   document.addEventListener('selectstart',function(e){if(!field(e.target))e.preventDefault()});

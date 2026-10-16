@@ -191,6 +191,32 @@ picture::after,.still::after{content:"";position:absolute;inset:0;background:tra
 .qm-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;background:#0d1122d9;color:#f1d99c;padding:10px 16px;border-radius:8px;font-size:15px;text-align:center;max-width:80%}
 .qm-load button{margin-left:6px;background:#e0b45f;color:#0d1122;border:0;border-radius:6px;padding:4px 12px;font:inherit;cursor:pointer}
 /* developer preview only (QB_DEV): banner and still id / status captions */
-.devbar{background:#7a1f1f;color:#fff3d6;text-align:center;font-size:13px;padding:6px 12px;position:sticky;top:0;z-index:60}
+.devbar{background:#7a1f1f;color:#fff3d6;text-align:center;font-size:13px;padding:6px 12px}   /* not sticky: it covered the sticky nav bar (项目评估 10-15) */
 .still .stillid{position:relative;z-index:2;margin-top:6px;font:600 14px/1.4 system-ui,sans-serif;text-align:center;color:var(--muted)}
 .still .stillid.ok{color:#2f8f5b}.still .stillid.pending{color:#c0672a}
+/* press kit page */
+.presspage section{margin:28px 0}.presspage h2{font-size:1.15em;margin:0 0 10px;color:var(--gold)}
+.presspage .psub{color:var(--muted);margin-top:-4px}.presspage .muted{color:var(--muted)}
+.pfacts{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:12px 0}.pfacts dt{color:var(--muted)}.pfacts dd{margin:0}
+.pchars{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+.pchars figure,.picon,.pshots figure{margin:0;text-align:center}.pchars img{width:100%;height:auto;background:var(--paper);border-radius:10px}
+.picon img{border-radius:22%;box-shadow:0 6px 18px #0004}.pchars figcaption,.picon figcaption,.pshots figcaption{font-size:.85em;margin-top:6px}
+.pshots{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}.pshots img{width:100%;height:auto;border-radius:8px}
+.ptrailer{position:relative;padding-top:56.25%}.ptrailer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.pdl{display:inline-block;background:var(--gold);color:#1a1408;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600}
+/* review desk (developer preview only): copy button, toast, clickable still ids */
+.rv-copy{position:absolute;z-index:90;background:#7a1f1f;color:#fff3d6;border:0;border-radius:8px;padding:7px 14px;font:600 15px/1 system-ui,sans-serif;box-shadow:0 4px 14px #0005;cursor:pointer}
+.rv-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:95;background:#0f1530;color:#f1d99c;padding:9px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.rv-toast.on{opacity:1}
+.still .stillid[data-id]{cursor:pointer;text-decoration:underline dotted}
+.rv-progress{margin:-6px 0 18px;text-align:center;font:600 14px/1.5 system-ui,sans-serif;color:#c0672a}
+.rv-tick{position:relative;z-index:2;text-align:center;font:14px/1.6 system-ui,sans-serif;margin-top:2px}
+.rv-tick label,.rv-chapter label{font-weight:600;cursor:pointer}.rv-tick input,.rv-chapter input{width:18px;height:18px;vertical-align:-3px}
+.rv-meta{color:var(--muted);font-size:13px;margin-left:8px}
+.rv-tick[data-st=ok] label,.rv-chapter[data-st=ok] label{color:#2f8f5b}.rv-tick[data-st=stale] .rv-meta,.rv-chapter[data-st=stale] .rv-meta{color:#c0392b}
+.rv-chapter{margin:28px 0 8px;padding:14px 16px;border:2px solid var(--line);border-radius:10px;font:16px/1.6 system-ui,sans-serif;text-align:center}
+.rv-badge{display:inline-block;margin-left:8px;font:12px/1.4 system-ui,sans-serif;color:#c0672a;border:1px solid currentColor;border-radius:6px;padding:0 5px}.rv-badge.done{color:#2f8f5b}
+/* review desk: paragraph number before each paragraph (drawn by CSS, so it is never part of a selection or a copy) */
+html[data-dev] .chtext article [data-p]::before{content:attr(data-p);display:inline-block;min-width:2.2em;margin-right:.5em;text-indent:0;
+  font:12px/1 system-ui,sans-serif;color:var(--muted);opacity:.75;vertical-align:.15em;-webkit-user-select:none;user-select:none}
+html[data-dev] .chtext article hr[data-p]::before{content:none}
