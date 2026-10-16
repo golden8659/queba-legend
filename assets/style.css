@@ -179,3 +179,9 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .fbpage .scale>span{font-size:.85em;color:var(--muted)}
 .fbpage .hp{position:absolute;left:-9999px}
 .fbpage .fbsend{margin-top:1.5em}.fbpage #fbmsg{margin-left:1em;color:var(--accent)}
+/* copy protection (author 10-15): chapter text unselectable; pictures sit under a transparent cover, no drag / save menu */
+.chtext article{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none}
+.still,.hero picture{position:relative;display:block}
+.still img,.hero picture img{pointer-events:none;-webkit-user-select:none;user-select:none}
+.still::after,.hero picture::after{content:"";position:absolute;inset:0;background:transparent}

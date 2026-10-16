@@ -132,6 +132,22 @@
   var fc=document.getElementById('feedcopy');
   if(fc)fc.onclick=function(){var i=document.getElementById('feedurl'),b=this;i.select();(navigator.clipboard?navigator.clipboard.writeText(i.value):Promise.reject()).catch(function(){document.execCommand('copy')}).then(function(){var o=b.textContent;b.textContent=b.dataset.ok;setTimeout(function(){b.textContent=o},1500)})};
 
+  // Copy protection (author 10-15). Chapter text can't be selected; pictures can't be dragged or saved with a
+  // right-click / long-press. Text copied anyway (select-all, reader tools) gets the source and copyright notice
+  // appended. This only stops casual copying: screenshots and developer tools still work, and the text stays in
+  // the HTML for search engines and screen readers.
+  var guard='.chtext article,.still,.hero,.worldmap,.tiles,figure,picture,img';
+  function guarded(t){t=t&&t.nodeType===1?t:t&&t.parentNode;return !!(t&&t.closest&&t.closest(guard))}
+  document.addEventListener('contextmenu',function(e){if(guarded(e.target)&&!(e.target.closest('a')&&!e.target.closest('img,picture,figure')))e.preventDefault()});
+  document.addEventListener('dragstart',function(e){if(guarded(e.target))e.preventDefault()});
+  document.addEventListener('copy',function(e){
+    var sel=window.getSelection(),txt=sel?String(sel):'';if(!txt||!e.clipboardData)return;
+    if(!guarded(sel.anchorNode)&&!guarded(sel.focusNode)&&!document.querySelector('.chtext'))return;
+    if(document.activeElement&&/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName))return;
+    var note=document.body.dataset.copy||'';
+    if(note&&root.lang==='zh-Hant'&&window.OpenCC)try{note=OpenCC.Converter({from:'cn',to:'tw'})(note)}catch(x){}
+    e.clipboardData.setData('text/plain',txt.replace(/\s+$/,'')+'\n\n'+note);e.preventDefault()});
+
   // a language picked from the menu is remembered, so the first-visit auto-switch never overrides it
   document.querySelectorAll('#langmenu .pop a').forEach(function(a){a.addEventListener('click',function(){set('qb-lang',a.dataset.zh?'zh':(a.getAttribute('lang')||'').slice(0,2))})});
 })();
