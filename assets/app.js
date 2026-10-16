@@ -71,7 +71,7 @@
   }catch(e){}
   var vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36),sec=0,depth=0,lastAct=Date.now(),sent=false,seen=0;
   function post(url,obj){var d=JSON.stringify(obj);try{if(navigator.sendBeacon)navigator.sendBeacon(url,d);else fetch(url,{method:'POST',body:d,keepalive:true,mode:'no-cors'})}catch(e){}}
-  function hit(){if(sent)return;sent=true;
+  function hit(){if(sent||root.dataset.dev)return;sent=true;   // developer preview: never counted
     if(me){post('https://stats.mahjongx.net/h',{me:1,u:uid});return}   // author's device: tells the server to ignore this device and network
     post('https://stats.mahjongx.net/h',{p:location.pathname,r:document.referrer,rc:rc,v:vid,u:uid,c:ch})}
   if(me)hit();
