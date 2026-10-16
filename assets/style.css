@@ -165,3 +165,17 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px;bor
 .gamepage .dl .note{margin:.9em 0 0;font-size:.92em;color:var(--muted)}
 .hero picture{display:block;min-width:0}
 .reader .partline{text-align:center;letter-spacing:.3em;color:var(--gold);font-size:1.05em;margin:0 0 1.6em}
+/* public-beta questionnaire (feedback.html) */
+.fbpage .fq{border:1px solid var(--line);border-radius:12px;margin:1.2em 0;padding:1em 1.2em}
+.fbpage legend{padding:0 .4em;font-weight:600}.fbpage legend small{font-weight:400;color:var(--muted)}
+.fbpage .opt{display:block;margin:.45em 0;cursor:pointer}
+.fbpage textarea,.fbpage .other{width:100%;box-sizing:border-box;margin-top:.5em;padding:.6em;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font:inherit}
+.fbpage .sub{display:block;margin-top:.8em;font-size:.95em}
+.fbpage .scale,.fbpage .rate{display:flex;flex-wrap:wrap;align-items:center;gap:.5em;margin:.5em 0}
+.fbpage .rate>span:first-child{min-width:7.5em}
+.fbpage .scale label i,.fbpage .rate label i{display:inline-block;min-width:2.2em;padding:.3em .5em;text-align:center;border:1px solid var(--line);border-radius:8px;font-style:normal;cursor:pointer}
+.fbpage .scale input,.fbpage .rate input{position:absolute;opacity:0}
+.fbpage .scale input:checked+i,.fbpage .rate input:checked+i{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fbpage .scale>span{font-size:.85em;color:var(--muted)}
+.fbpage .hp{position:absolute;left:-9999px}
+.fbpage .fbsend{margin-top:1.5em}.fbpage #fbmsg{margin-left:1em;color:var(--accent)}
