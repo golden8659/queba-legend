@@ -220,3 +220,6 @@ picture::after,.still::after{content:"";position:absolute;inset:0;background:tra
 html[data-dev] .chtext article [data-p]::before{content:attr(data-p);display:inline-block;min-width:2.2em;margin-right:.5em;text-indent:0;
   font:12px/1 system-ui,sans-serif;color:var(--muted);opacity:.75;vertical-align:.15em;-webkit-user-select:none;user-select:none}
 html[data-dev] .chtext article hr[data-p]::before{content:none}
+.rv-show{font-weight:600;cursor:pointer}.rv-pub{font-size:13px;color:var(--muted)}.rv-pub[data-on="1"]{color:#2f8f5b;font-weight:600}
+.rv-mode{margin:6px 0 22px;padding:10px 14px;border:1px dashed var(--line);border-radius:10px;font:14px/1.9 system-ui,sans-serif}
+.rv-mode label{display:block;cursor:pointer}.rv-mode input{vertical-align:-2px}
