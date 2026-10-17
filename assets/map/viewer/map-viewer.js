@@ -55,7 +55,7 @@ window.QM_SITE = (function () {
   return {load: load, tiles: tiles};
 })();
 
-/* 雀霸传奇 · 世界地图无极缩放查看器（无依赖）
+/* 天元·雀霸传奇 · 世界地图无极缩放查看器（无依赖）
  * 用法：<div id="map" style="height:80vh"></div>
  *       <script src="map-viewer.js"></script>
  *       QuebaMap.mount(document.getElementById('map'), {base: 'assets/map/viewer/', chapter: 9, lang: 'zh'});
