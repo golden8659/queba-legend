@@ -230,3 +230,6 @@ html[data-dev] .chtext article hr[data-p]::before{content:none}
 /* Original Chinese cover: the selected seal sits just before the first title character. */
 .hero .sealed-cover::before{content:"";position:absolute;z-index:1;left:3.4%;top:6%;width:7%;aspect-ratio:654/1159;background:url("tianyuan-seal.png?v=b2d9b8c584bb") center/contain no-repeat;pointer-events:none}
 @media(max-width:760px){.hero .sealed-cover{width:100%;max-width:300px;margin:0 auto}}
+
+/* Keep the full Chinese brand name visible on narrow phones. */
+@media(max-width:480px){:root[data-lang="zh"] .bar .wrap,:root[data-lang="zh-Hant"] .bar .wrap{height:auto;min-height:56px;flex-direction:column;gap:6px;padding-top:8px;padding-bottom:8px}:root[data-lang="zh"] .brand,:root[data-lang="zh-Hant"] .brand{margin-right:0;max-width:100%;flex-shrink:0}}
