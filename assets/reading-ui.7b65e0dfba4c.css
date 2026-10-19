@@ -1,0 +1,22 @@
+/* Reading controls stay in the existing header. The original end pager is unchanged. */
+body[data-reading-ui="1"] .bar nav>a.reading-step,body[data-reading-ui="1"] .bar nav>span.reading-step{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 9px;font-size:14px;line-height:1.2;white-space:nowrap;border-radius:6px;color:#e8dcc0}
+body[data-reading-ui="1"] .bar nav>span.reading-step{opacity:.36;cursor:default}
+.reading-step-short{display:none}
+body[data-reading-ui="1"] .bar nav>a:focus-visible,body[data-reading-ui="1"] .bar .menu>summary:focus-visible{outline:2px solid #f1d99c;outline-offset:2px}
+body[data-reading-ui="1"] .bar nav>a[data-reading-toc]{display:inline-flex!important}
+@media(max-width:760px){
+ body[data-reading-ui="1"] .bar .wrap{height:auto;min-height:56px;flex-wrap:wrap;gap:6px;padding-top:8px;padding-bottom:8px}
+ body[data-reading-ui="1"] .bar .brand{flex:1 1 100%;margin:0;max-width:100%}
+ body[data-reading-ui="1"] .bar nav{flex:1 1 100%;min-width:0;flex-wrap:wrap;justify-content:flex-end;gap:4px}
+ body[data-reading-ui="1"] .bar nav>a,body[data-reading-ui="1"] .bar nav>.menu>summary{min-width:44px;height:44px;padding:0 7px;box-sizing:border-box;font-size:14px}
+ body[data-reading-ui="1"] .bar nav>.reading-step{width:44px;height:44px;padding:0;flex:none;box-sizing:border-box;font-size:24px}
+ body[data-reading-ui="1"] .reading-step-long{display:none}
+ body[data-reading-ui="1"] .reading-step-short{display:inline;font-size:24px;line-height:1}
+}
+/* Reuse the original reader tile component and actual atlas; no decorative frame. */
+main .game-score{width:max-content;max-width:100%;margin:4px 0 24px 2em;padding:0;border:0;border-image:none;border-radius:2px;background:transparent;box-shadow:none}
+main .game-score .reader-tile-strip{--reader-tile-w:clamp(17px,calc((100vw - 94px)/14),38px);display:flex;align-items:center;gap:2px;margin:0;width:max-content;max-width:100%}
+main .game-score .reader-tile{display:inline-block;box-sizing:border-box;flex-shrink:0;width:var(--reader-tile-w);height:calc(var(--reader-tile-w)*1.375);padding:2px 1px;border:1px solid #d1c7b4;border-radius:2px;background:#fffdf4;box-shadow:none}
+main .game-score .reader-tile-face{display:block;width:100%;height:100%;background-image:url("reader-tiles.17d141523245.webp");background-size:3500% 100%;background-repeat:no-repeat}
+main .game-score figcaption{display:none}
+@media(max-width:600px){main .game-score{margin-left:0}main .game-score .reader-tile-strip{gap:1px}}
