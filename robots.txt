@@ -16,12 +16,6 @@ Disallow: /
 User-agent: Applebot-Extended
 Disallow: /
 
-User-agent: Bytespider
-Disallow: /
-
-User-agent: PerplexityBot
-Disallow: /
-
 User-agent: Amazonbot
 Disallow: /
 
@@ -37,6 +31,9 @@ Disallow: /
 User-agent: cohere-ai
 Disallow: /
 
+User-agent: cohere-training-data-crawler
+Disallow: /
+
 User-agent: omgili
 Disallow: /
 
@@ -46,13 +43,16 @@ Disallow: /
 User-agent: Timpibot
 Disallow: /
 
-User-agent: YouBot
-Disallow: /
-
 User-agent: AI2Bot
 Disallow: /
 
-User-agent: PetalBot
+User-agent: PanguBot
+Disallow: /
+
+User-agent: Kangaroo Bot
+Disallow: /
+
+User-agent: img2dataset
 Disallow: /
 
 User-agent: MJ12bot
