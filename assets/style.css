@@ -228,7 +228,6 @@ html[data-dev] .chtext article hr[data-p]::before{content:none}
 .brand .site-title-seal{display:block;height:1.35em;width:auto;flex:none;object-fit:contain;border-radius:0;box-shadow:none}
 
 /* Original Chinese cover: the selected seal sits just before the first title character. */
-.hero .sealed-cover::before{content:"";position:absolute;z-index:1;left:3.4%;top:6%;width:7%;aspect-ratio:654/1159;background:url("tianyuan-seal.png?v=b2d9b8c584bb") center/contain no-repeat;pointer-events:none}
 @media(max-width:760px){.hero .sealed-cover{width:100%;max-width:300px;margin:0 auto}}
 
 /* Keep the full Chinese brand name visible on narrow phones. */
