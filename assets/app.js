@@ -67,6 +67,7 @@
     me=get('qb-me')==='1'||location.hostname!=='novel.mahjongx.net';  // local previews never count
     uid=get('qb-uid');if(!uid||!/^[a-z0-9]{12,32}$/.test(uid)){uid='';var a=new Uint8Array(12);crypto.getRandomValues(a);for(var i=0;i<12;i++)uid+=('0'+a[i].toString(36)).slice(-2);set('qb-uid',uid)}
     var cq=(qs.get('c')||'').toLowerCase();ch=get('qb-ch');if(!ch&&/^[a-z0-9_-]{1,20}$/.test(cq)){ch=cq;set('qb-ch',ch)}
+    if(!ch){var uc=(qs.get('utm_campaign')||'').toLowerCase(),us=(qs.get('utm_source')||'').toLowerCase(),uk=/^[a-z0-9_-]{1,24}$/.test(uc)?uc:'';if(uk&&/^[a-z0-9_-]{1,12}$/.test(us))uk+='~'+us;if(uk){ch=uk;set('qb-ch',ch)}}   // UTM：首次落地记「活动~来源」，进站后跨页不丢
     var q=qs.get('r');rc=get('qb-rc');if(!rc&&q&&/^[A-HJ-NP-Z2-9]{6}$/.test(q.toUpperCase())){rc=q.toUpperCase();set('qb-rc',rc)}
   }catch(e){}
   var vid=Math.random().toString(36).slice(2,10)+Date.now().toString(36),sec=0,depth=0,lastAct=Date.now(),sent=false,seen=0;
