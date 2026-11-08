@@ -1,0 +1,27 @@
+/* 现有三主题五态素材保持；整张连续绘制，不再九宫格切分玉纹。
+   普通素材底部有6像素透明留白，以105%背景高裁掉；主键整张126px。
+   所有尺寸只有一个背景采样面，无独立边/中片接缝。 */
+html[data-skin=jade]  {--btn-normal:url("/assets/p126/media/btn/btn-jade-normal.webp");--btn-hover:url("/assets/p126/media/btn/btn-jade-hover.webp");--btn-pressed:url("/assets/p126/media/btn/btn-jade-pressed.webp");--btn-selected:url("/assets/p126/media/btn/btn-jade-selected.webp");--btn-disabled:url("/assets/p126/media/btn/btn-jade-disabled.webp")}
+html[data-skin=ink]   {--btn-normal:url("/assets/p126/media/btn/btn-ink-normal.webp");--btn-hover:url("/assets/p126/media/btn/btn-ink-hover.webp");--btn-pressed:url("/assets/p126/media/btn/btn-ink-pressed.webp");--btn-selected:url("/assets/p126/media/btn/btn-ink-selected.webp");--btn-disabled:url("/assets/p126/media/btn/btn-ink-disabled.webp")}
+html[data-skin=sandal]{--btn-normal:url("/assets/p126/media/btn/btn-sandal-normal.webp");--btn-hover:url("/assets/p126/media/btn/btn-sandal-hover.webp");--btn-pressed:url("/assets/p126/media/btn/btn-sandal-pressed.webp");--btn-selected:url("/assets/p126/media/btn/btn-sandal-selected.webp");--btn-disabled:url("/assets/p126/media/btn/btn-sandal-disabled.webp")}
+:root{--btn-text:#ffe9a0}
+.btn{--h:56px;--fs:22px;position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
+  height:var(--h);width:var(--w,auto);min-width:0;padding:calc(2px - 2*var(--cy)) calc(2*var(--cx)) calc(2*var(--cy) - 2px) calc(-2*var(--cx));
+  font-family:inherit;font-weight:400;font-size:var(--fs);line-height:1;color:var(--btn-text);letter-spacing:var(--ls,0px);text-indent:var(--ls,0px);
+  text-shadow:0 1px 2px #0009;white-space:nowrap;border:0;background:none;cursor:pointer;isolation:isolate;outline:none;-webkit-tap-highlight-color:transparent;user-select:none;
+  transition:transform .09s ease-out;--btn-img:var(--btn-normal);--u:calc(var(--h) / 160)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;border:0;
+  background-image:var(--btn-img);background-position:center top;background-size:100% 105%;background-repeat:no-repeat;
+  filter:drop-shadow(0 3px 4px #0008)}
+.btn.sm{--h:44px;--fs:20px}
+/* 状态：只作用在当前这一个键上；不放大、不外扩，任何状态都在原来的盒子里 */
+.btn:hover,.btn.is-h{--btn-img:var(--btn-hover)}
+.btn:active,.btn.is-a{--btn-img:var(--btn-pressed);transform:scale(.97)}
+.btn.on{--btn-img:var(--btn-selected)}
+.btn.off{--btn-img:var(--btn-disabled);cursor:default;pointer-events:none;color:#cfc6a8}
+
+html[data-skin=jade]{--main-normal:url("/assets/p126/media/btn/btn-main-jade-normal.webp");--main-hover:url("/assets/p126/media/btn/btn-main-jade-hover.webp");--main-pressed:url("/assets/p126/media/btn/btn-main-jade-pressed.webp");--main-selected:url("/assets/p126/media/btn/btn-main-jade-selected.webp");--main-disabled:url("/assets/p126/media/btn/btn-main-jade-disabled.webp")}
+html[data-skin=ink]{--main-normal:url("/assets/p126/media/btn/btn-main-ink-normal.webp");--main-hover:url("/assets/p126/media/btn/btn-main-ink-hover.webp");--main-pressed:url("/assets/p126/media/btn/btn-main-ink-pressed.webp");--main-selected:url("/assets/p126/media/btn/btn-main-ink-selected.webp");--main-disabled:url("/assets/p126/media/btn/btn-main-ink-disabled.webp")}
+html[data-skin=sandal]{--main-normal:url("/assets/p126/media/btn/btn-main-sandal-normal.webp");--main-hover:url("/assets/p126/media/btn/btn-main-sandal-hover.webp");--main-pressed:url("/assets/p126/media/btn/btn-main-sandal-pressed.webp");--main-selected:url("/assets/p126/media/btn/btn-main-sandal-selected.webp");--main-disabled:url("/assets/p126/media/btn/btn-main-sandal-disabled.webp")}
+.btn.main{--btn-normal:var(--main-normal);--btn-hover:var(--main-hover);--btn-pressed:var(--main-pressed);--btn-selected:var(--main-selected);--btn-disabled:var(--main-disabled);--u:calc(var(--h) / 168)}
+.btn.main::before{background-size:100% 100%}
