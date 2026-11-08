@@ -9,6 +9,7 @@ if(root){
   const W=ui.words[lang]||ui.words.zh;
   const chapterLabel=n=>lang==='en'?'Chapter '+n:lang==='ko'?'제'+n+'장':lang==='ja'?'第'+n+'章':'第 '+n+' 章';
   const chapterTitle=x=>x.titles[lang]||'';
+  const pendingTitle={zh:'章节标题待公布','zh-Hant':'章節標題待公布',en:'Title to be announced',ja:'章題は後日公開',ko:'제목 공개 예정'}[lang];
   if(cat.schema!=='P126_AUDIO_1'||!Array.isArray(cat.chapters))throw Error('catalogue format');
   let chapter=Number(new URLSearchParams(location.search).get('chapter')||1);if(!Number.isInteger(chapter)||chapter<1||chapter>40)chapter=1;
   const selected=cat.chapters.find(x=>x.chapter===chapter);if(!selected)throw Error('chapter');
@@ -31,8 +32,9 @@ if(root){
    const li=document.createElement('li'),a=document.createElement('a');a.className='audio-chapter';const u=new URL(location.href);u.searchParams.set('chapter',String(x.chapter));a.href=u.pathname+u.search;
    if(x.chapter===chapter){a.setAttribute('aria-current','true');a.classList.add('on')}
    const b=document.createElement('b');b.textContent=chapterLabel(x.chapter);a.append(b);
-   const titles=document.createElement('span');titles.className='audio-titles';const title=document.createElement('strong');title.textContent=chapterTitle(x)||'—';titles.append(title);
-   if(lang.startsWith('zh')){const alternate=document.createElement('small');alternate.textContent=x.titles[lang==='zh'?'zh-Hant':'zh']||'';titles.append(alternate)}a.append(titles);
+   const titles=document.createElement('span');titles.className='audio-titles';const title=document.createElement('strong');title.textContent=chapterTitle(x)||pendingTitle;titles.append(title);
+   // 当前语言页面仅展示当前语种标题，避免简繁串字和同名副标题重复。
+   a.append(titles);
    const state=document.createElement('em');state.textContent=available(x)?W.live:W.soon;a.append(state);li.append(a);list.append(li);
   });
   root.querySelector('[data-audio-loading]').hidden=true;
