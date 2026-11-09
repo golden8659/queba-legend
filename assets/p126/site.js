@@ -31,16 +31,16 @@
  let busy=false,last='';
  function layout(){
   if(busy)return;busy=true;try{
-   const paired=innerWidth<=1180,w=cast.clientWidth,h=hero.clientHeight,key=[innerWidth,w,h,paired].join('|');if(last===key)return;
+   const tablet=matchMedia('(min-width:761px) and (max-width:1366px) and (hover:none) and (pointer:coarse)').matches,wide=tablet&&innerWidth>innerHeight;const paired=innerWidth<=1180||tablet,w=cast.clientWidth,h=hero.clientHeight,key=[innerWidth,innerHeight,w,h,paired,wide].join('|');if(last===key)return;
    const ppcm=paired?1.95*w/390:Math.min(2.7,w/300,(h-50)/234),floor=paired?5*w/390:32;
    const faces=paired?{a:110*w/390,c:270*w/390,d:110*w/390,b:280*w/390}:{d:.12*w,a:.36*w,c:.62*w,b:.79*w};
    for(const img of cast.querySelectorAll('img')){const k=Object.keys(defs).find(x=>img.classList.contains(x));if(!k)continue;const d=defs[k],scale=ppcm*d.cm/(d.foot-d.top),ih=1800*scale,iw=900*scale,left=Math.max(0,Math.min(w-iw,faces[k]-d.axis*scale)),bottom=floor-(1800-d.foot)*scale;
     for(const [prop,val] of Object.entries({height:ih+'px',width:iw+'px',left:left+'px',right:'auto',bottom:bottom+'px','max-width':'none','max-height':'none',transform:'none'}))img.style.setProperty(prop,val,'important');
     img.dataset.calibratedCm=String(d.cm);img.dataset.pixelsPerCm=String(ppcm);img.dataset.bodyTop=String(d.top);img.dataset.foot=String(d.foot);
    }
-   if(paired){const ch=394*w/390;cast.style.setProperty('height',ch+'px','important');hero.style.setProperty('padding-top',ch+38+'px','important');const dots=hero.querySelector('.mdots');if(dots)dots.style.top=ch+2+'px';}
+   if(paired){const ch=394*w/390;cast.style.setProperty('height',ch+'px','important');hero.style.setProperty('padding-top',wide?'0px':ch+38+'px','important');const dots=hero.querySelector('.mdots');if(dots){dots.style.top=(wide?cast.offsetTop:0)+ch+2+'px';dots.style.left=wide?(cast.offsetLeft+w/2)+'px':'50%';}}
    else{cast.style.removeProperty('height');hero.style.removeProperty('padding-top');}
-   last=[innerWidth,cast.clientWidth,hero.clientHeight,paired].join('|');
+   last=[innerWidth,innerHeight,cast.clientWidth,hero.clientHeight,paired,wide].join('|');
   }finally{busy=false;}
  }
  globalThis.qbCalibrateCast=layout;new ResizeObserver(layout).observe(cast);addEventListener('resize',()=>{last='';layout()},{passive:true});layout();
@@ -150,4 +150,46 @@
  const observer=new MutationObserver(schedule);observer.observe(document.body,{subtree:true,childList:true,characterData:true});
  addEventListener('resize',()=>{delete root.dataset.qbNavCollapsed;schedule()},{passive:true});document.fonts.ready.then(schedule);document.fonts.addEventListener('loadingdone',schedule);
  globalThis.qbFitButtons=all;schedule();
+})();
+
+// Only a future explicitly published audio element can attach timed captions.
+// No private media, auto-play, author notes or review APIs are used here.
+globalThis.qbPublicCaptions={attach(audio,segments,stage){
+ if(!(audio instanceof HTMLMediaElement)||!stage?.matches('.qb-listening-stage'))throw new TypeError('Published audio and caption panel required');
+ const rows=segments.map(x=>({start:Number(x.start),end:Number(x.end),text:String(x.text)}));if(rows.some((x,i)=>!Number.isFinite(x.start)||!Number.isFinite(x.end)||x.start<0||x.end<=x.start||i&&x.start<rows[i-1].start))throw new TypeError('Invalid caption timeline');
+ const line=stage.querySelector('[data-caption-current]');let active=-1;
+ const tick=()=>{const i=rows.findIndex(x=>audio.currentTime>=x.start&&audio.currentTime<x.end);if(i>=0&&i!==active){active=i;line.textContent=rows[i].text;}};
+ const play=()=>{stage.dataset.playing='true';tick();};const pause=()=>{stage.dataset.playing='false';};audio.addEventListener('timeupdate',tick);audio.addEventListener('play',play);audio.addEventListener('pause',pause);audio.addEventListener('ended',pause);tick();
+ return()=>{audio.removeEventListener('timeupdate',tick);audio.removeEventListener('play',play);audio.removeEventListener('pause',pause);audio.removeEventListener('ended',pause);delete stage.dataset.playing;};
+}};
+
+// Keep the visible paragraph anchored when a touch device changes width during rotation.
+(()=>{
+ const text=document.querySelector('.p126-reader .rtxt,.castrow,.p126-aux,.p126-legal');if(!text||!matchMedia('(hover:none) and (pointer:coarse)').matches)return;
+ const paragraphs=[...text.querySelectorAll(text.matches('.castrow')?'.cc':text.matches('.rtxt')?'p':'h1,h2,h3,p')];let width=innerWidth,anchor=null,pending=null,restoring=false,queued=false,timer;
+ function remember(){
+  if(restoring||innerWidth!==width)return;
+  if(scrollY<8){anchor={top:true};return;}
+  const line=Math.min(innerHeight*.3,(document.querySelector('.top')?.getBoundingClientRect().bottom||78)+32);
+  const head=document.querySelector('.top')?.getBoundingClientRect().bottom||78;
+  const node=paragraphs.find(p=>{const r=p.getBoundingClientRect();return r.top>=head-1&&r.top<innerHeight*.85;})||paragraphs.find(p=>p.getBoundingClientRect().bottom>line);
+  if(node)anchor={node,y:node.getBoundingClientRect().top};
+ }
+ function apply(){if(!pending)return;if(pending.top)scrollTo({top:0,behavior:'instant'});else if(pending.node.isConnected)scrollTo({top:scrollY+pending.node.getBoundingClientRect().top-pending.y,behavior:'instant'});}
+ addEventListener('scroll',()=>{if(queued||restoring)return;queued=true;requestAnimationFrame(()=>{queued=false;remember();});},{passive:true});
+ addEventListener('resize',()=>{
+  if(innerWidth===width&&!restoring)return;
+  if(!restoring)pending=anchor;restoring=true;clearTimeout(timer);
+  timer=setTimeout(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{apply();timer=setTimeout(()=>{apply();width=innerWidth;pending=null;restoring=false;remember();},160);})),80);
+ },{passive:true});
+ document.fonts.ready.then(remember);remember();
+})();
+
+// Keep Chinese role descriptions readable without changing their text.
+(()=>{
+ if(!/^zh(?:-|$)/i.test(document.documentElement.lang))return;
+ const phrases=/((?:不碰牌的|不碰牌的)|(?:书生|書生)|(?:父亲|父親)|(?:算盘|算盤)|(?:司筹|司籌)|(?:账本|賬本|帳本)|(?:醒狮|醒獅)|(?:班主)|(?:嗓门|嗓門)|(?:狮头|獅頭)|(?:每一局)|(?:牌史)|(?:独独|獨獨)|(?:沉默)|(?:一局))/g;
+ for(const p of document.querySelectorAll('.cc p')){
+  const text=p.textContent,parts=text.split(phrases);p.replaceChildren(...parts.filter(Boolean).map(x=>{if(!phrases.test(x)){phrases.lastIndex=0;return document.createTextNode(x);}phrases.lastIndex=0;const span=document.createElement('span');span.className='qb-phrase';span.style.whiteSpace='nowrap';span.textContent=x;return span;}));
+ }
 })();
