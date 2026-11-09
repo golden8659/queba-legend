@@ -49,67 +49,105 @@
 // 大厅卡片随网页主题换图；外文明确使用繁体实机，不冒充外语App。
 (()=>{const root=document.documentElement;function sync(){const lang=/^zh(?:-|$)/.test(root.lang)&&root.lang!=='zh-Hant'?'zh':'zh-Hant',skin=root.dataset.skin||'jade';document.querySelectorAll('img[data-game-screenshot]').forEach(img=>{const base=lang==='zh'?'/assets/p126/media/shots/':'/assets/p126/shots/zh-Hant/';img.src=base+img.dataset.gameScreenshot+'-'+skin+'.webp';});}new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['data-skin']});sync();})();
 
-/* 作者返修2：中文统一24px；其他语言以24px为上限，只有放不下才缩小并保持单行。 */
+/* 同组等宽；中文24px并按框宽调字距；外文最高24px，放不下才缩，单行。 */
 (()=>{
- const root=document.documentElement,selector='.btn,button,summary,.p126-pop a,.p126-legal nav a';
- let queued=false,running=false,fontEpoch=0;const cache=new WeakMap();
- const visible=e=>e.getClientRects().length&&e.clientWidth>0&&e.clientHeight>0&&getComputedStyle(e).visibility!=='hidden';
- function textRange(e){const range=document.createRange();range.selectNodeContents(e);return range.getBoundingClientRect();}
- function key(e){const s=getComputedStyle(e);return [root.lang,e.innerText,e.clientWidth,e.clientHeight,innerWidth,fontEpoch,s.fontFamily,s.fontWeight,s.fontSize,s.padding,s.minHeight,s.width].join('|');}
- function innerWidthOf(e){const s=getComputedStyle(e),w=parseFloat(s.width);return Number.isFinite(w)?(s.boxSizing==='border-box'?w-(parseFloat(s.borderLeftWidth)||0)-(parseFloat(s.borderRightWidth)||0):w+(parseFloat(s.paddingLeft)||0)+(parseFloat(s.paddingRight)||0)):e.clientWidth;}
- // 题库牌面是图片选择控件，图片面积不参与文字字号拟合，牌面与选项标识保持原样。
- function fit(e){
-  if(!visible(e)||e.classList.contains('menu')||e.classList.contains('qp-t')||!e.innerText.trim())return;
-  if(cache.get(e)===key(e))return;
-  const decorated=e.classList.contains('btn'),flexibleChinese=/^zh(?:-|$)/i.test(root.lang)&&!!e.closest('.p126-aux');
-  const setSize=size=>e.style.setProperty('font-size',size+'px',flexibleChinese?'important':'');
-  let autoWidth=false;try{autoWidth=decorated&&e.computedStyleMap().get('width').toString()==='auto'}catch{}
-  if(autoWidth){setSize(24);const ps=getComputedStyle(e.parentElement),parentWidth=e.parentElement.clientWidth-(parseFloat(ps.paddingLeft)||0)-(parseFloat(ps.paddingRight)||0);const target=Math.ceil(textRange(e).width/.6+2);e.style.minWidth=Math.max(44,Math.min(target,parentWidth))+'px';}
-  const insetFor=()=>Math.max(22,Math.min(32,e.clientHeight*.5),innerWidthOf(e)*.20);
-  if(/^zh(?:-|$)/i.test(root.lang)&&!flexibleChinese){
-   setSize(24);if(e.classList.contains('btn')){const inset=insetFor();const need=Math.ceil(textRange(e).width+2*inset);e.style.minWidth=need+'px';e.dataset.labelInset=String(inset);}e.dataset.fitLanguage='zh';e.dataset.fitSize='24';cache.set(e,key(e));return;
+ const root=document.documentElement,selector='.btn,button,.p126-pop a';
+ const vis=e=>e.getClientRects().length&&e.clientWidth>0&&e.clientHeight>0&&getComputedStyle(e).visibility!=='hidden';
+ const elements=()=>[...document.querySelectorAll(selector)].filter(e=>!e.classList.contains('menu')&&!e.classList.contains('qp-t')&&!e.closest('.mdots')&&e.tagName!=='INPUT');
+ const labels=new WeakMap();let queued=false,running=false;
+ const numeric=v=>parseFloat(v)||0;
+ const inner=e=>{const s=getComputedStyle(e);return Math.max(1,e.clientWidth-numeric(s.paddingLeft)-numeric(s.paddingRight))};
+ function normalize(e){
+  if(e.querySelector(':scope>.qb-label'))return;
+  let text=e.innerText.replace(/\u3000/g,' ').replace(/\s+/g,' ').trim();if(!text)return;
+  const cn=/^zh(?:-|$)/i.test(root.lang);if(cn)text=text.replace(/(?<=\p{Script=Han})\s+(?=\p{Script=Han})/gu,'');
+  const label=document.createElement('span');label.className='qb-label';
+  const spaced=cn&&/^\p{Script=Han}{2,12}$/u.test(text);
+  if(spaced)for(const char of text){const x=document.createElement('span');x.textContent=char;label.append(x)}else label.textContent=text;
+  const frame=document.createElement('span');frame.className='qb-frame';frame.setAttribute('aria-hidden','true');
+  for(const c of ['tl','tr','bl','br']){const x=document.createElement('i');x.className='qb-c '+c;frame.append(x)}
+  for(const c of ['top','bottom','left','right']){const x=document.createElement('i');x.className='qb-e '+c;frame.append(x)}
+  e.replaceChildren(label,frame);e.classList.add('qb-framed');labels.set(e,{text,spaced,count:Array.from(text).length});
+ }
+ function spec(e){
+  const drawerNav=!!e.closest('.dnav');const compact=!drawerNav&&!!e.closest('header,.drawer-tools,.p126-pop,.tocbar,.settings');
+  const sample=!!e.closest('.settings .seg'),inset=sample?24:compact?36:48;
+  const height=compact?48:64;const hero=innerWidth>=1181&&!!e.closest('.hero,.nhero');
+  const base=sample?80:compact?152:248,max=sample?152:compact?200:hero?248:320;
+  e.style.setProperty('--qb-height',height+'px');e.style.setProperty('--qb-inset',inset+'px');
+  e.style.setProperty('--qb-font','24px');e.style.setProperty('--qb-gap','0px');e.style.setProperty('--qb-tracking','0px');
+  const s=e.querySelector(':scope>.qb-label'),r=s.getBoundingClientRect();
+  const label=labels.get(e)||{text:s.textContent,spaced:s.children.length>1,count:Array.from(s.textContent).length};labels.set(e,label);
+  const gap=label.spaced?(label.count===2?14:5):0;
+  return{e,s,...label,compact,sample,inset,height,base,max,need:r.width+gap*Math.max(0,label.count-1)+inset*2};
+ }
+ function prepareGroups(specs){
+  const map=new Map();
+  for(const a of specs){const parent=a.e.parentElement;a.container=parent;
+   const p=a.e.closest('.endnext')||
+    (parent.classList.contains('p126-card-actions')?'page-card-actions':
+    a.e.tagName==='SUMMARY'&&parent.classList.contains('p126-menu')?parent.parentElement:parent);
+   if(!map.has(p))map.set(p,[]);map.get(p).push(a)}
+  for(const [p,list]of map){
+   const node=typeof p!=='string',controls=node?p.querySelectorAll(':scope>input:not([type=hidden]),:scope>textarea'):[];
+   if(controls.length)p.classList.add('qb-input-row');
+   const equal=list.length>=2&&(!node||(!p.matches('.pl-controls,.pl-audio,.pm,.audio-player')&&!p.closest('[data-audio-page] .player')));
+   if(equal&&node&&!p.matches('.nav,.acts,.seg,.p126-pop,.dnav'))p.classList.add('qb-group');
+   const maxNeed=Math.max(...list.map(a=>a.need)),target=Math.max(...list.map(a=>a.base));
+   let headerBudget=Infinity;
+   if(node&&p.matches('.top .acts')){
+    const wrap=p.closest('.wrap'),shown=e=>getComputedStyle(e).display!=='none';
+    const others=[...wrap.children].filter(e=>e!==p&&shown(e));
+    const gap=numeric(getComputedStyle(wrap).columnGap),outer=e=>{const s=getComputedStyle(e);return e.getBoundingClientRect().width+numeric(s.marginLeft)+numeric(s.marginRight)};
+    const fixed=[...p.children].filter(e=>shown(e)&&!list.some(a=>e===a.e||e.contains(a.e)));
+    const count=[...p.children].filter(shown).length;
+    headerBudget=(inner(wrap)-others.reduce((n,e)=>n+outer(e),0)-gap*others.length-fixed.reduce((n,e)=>n+outer(e),0)-numeric(getComputedStyle(p).columnGap)*Math.max(0,count-1))/list.length;
+   }
+   const commonBound=equal?Math.min(...list.map(a=>Math.min(a.max,inner(node?p:a.container),headerBudget))):Infinity;
+   for(const a of list){
+    let available=Math.min(inner(node?p:a.container),headerBudget,commonBound);
+    if(node&&p.classList.contains('dnav')&&innerWidth>760){const columns=getComputedStyle(p).gridTemplateColumns.split(' ');if(columns.length>1)available=Math.min(available,numeric(columns[0]));}
+    const desired=equal?Math.max(target,maxNeed):Math.max(a.base,a.need);
+    a.width=Math.max(44,Math.min(a.max,desired,available));a.e.style.setProperty('--qb-width',a.width+'px');
+   }
   }
-  const cs=getComputedStyle(e),ornament=e.classList.contains('btn')?insetFor():8,left=Math.max(ornament,parseFloat(cs.paddingLeft)||0),right=Math.max(ornament,parseFloat(cs.paddingRight)||0);e.dataset.labelInset=String(ornament);
-  const top=Math.max(4,parseFloat(cs.paddingTop)||0),bottom=Math.max(4,parseFloat(cs.paddingBottom)||0);
-  // 非固定高度控件以初始/最小高度为基准，防止字号增大反过来撑高自身而反复放大。
-  if(!e.dataset.fitBaseHeight)e.dataset.fitBaseHeight=String(Math.min(e.clientHeight,56));
-  const boxHeight=e.classList.contains('btn')?e.clientHeight:(parseFloat(cs.minHeight)||Number(e.dataset.fitBaseHeight));
-  const height=Math.max(1,boxHeight-top-bottom),cap=Math.max(1,Math.min(24,boxHeight-8));
-  const fits=size=>{
-   setSize(size);
-   const r=textRange(e);
-   // clientWidth取整会使自动宽度控件的判断跳变，使用连续的CSS实际宽度。
-   return r.width<=innerWidthOf(e)-left-right+.01&&r.height<=height+.01;
-  };
-  let lo=1,hi=Math.floor(cap*4);
-  while(lo<hi){const mid=Math.ceil((lo+hi)/2);if(fits(mid/4))lo=mid;else hi=mid-1;}
-  const size=lo/4;setSize(size);
-  const nextFits=size+.25<=cap&&fits(size+.25);setSize(size);
-  e.dataset.fitLanguage=root.lang;e.dataset.fitSize=String(size);e.dataset.fitCap=String(cap);
-  e.dataset.fitNextFits=String(nextFits);e.dataset.fitWidth=String(innerWidthOf(e)-left-right);e.dataset.fitHeight=String(height);
-  cache.set(e,key(e));
  }
- function fitTitles(){
-  document.querySelectorAll('.plq>span,.entries .ent h3').forEach(e=>{
-   if(!visible(e))return;const plaque=e.parentElement.classList.contains('plq'),box=plaque?e.parentElement:e;
-   const inset=plaque?Math.max(36,box.clientHeight*.38):2,available=box.clientWidth-2*inset;
-   const cap=plaque?(innerWidth<=760?24:30):24;
-   e.style.whiteSpace='nowrap';let lo=1,hi=cap*4;
-   while(lo<hi){const mid=Math.ceil((lo+hi)/2);e.style.fontSize=mid/4+'px';if(textRange(e).width<=available+.01)lo=mid;else hi=mid-1;}
+ function fit(a){
+  const{e,s,spaced,count,inset}=a;let width=e.getBoundingClientRect().width,available=Math.max(1,width-inset*2);let fs=24,gap=0;
+  e.style.setProperty('--qb-font',fs+'px');
+  if(spaced){
+   const natural=s.getBoundingClientRect().width;
+   // 两字也按框宽舒展，但上限约半字，避免过散；长字串留更小的间隔。
+   const cap=count===2?14:count===3?9:7;
+   gap=Math.max(0,Math.min(cap,(available-natural)/(count-1)*.60));
+   e.style.setProperty('--qb-gap',gap.toFixed(2)+'px');
+  }else e.style.setProperty('--qb-tracking','0px');
+  // 字号从24开始，按0.25px退让；中文优先扩大组宽，窄抽屉用一列保证24px。
+  while(s.getBoundingClientRect().width>available+.1&&fs>16){fs-=.25;e.style.setProperty('--qb-font',fs+'px')}
+  const cs=getComputedStyle(s),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font=[cs.fontWeight,cs.fontSize,cs.fontFamily].join(' ');const metric=ctx.measureText(s.textContent);const ascent=metric.fontBoundingBoxAscent??fs*.8,descent=metric.fontBoundingBoxDescent??fs*.2;const offset=Math.max(-5,Math.min(5,(ascent-descent-metric.actualBoundingBoxAscent+metric.actualBoundingBoxDescent)/2));e.style.setProperty('--qb-optical-y',(-offset).toFixed(2)+'px');e.dataset.qbOpticalY=String(-offset);
+  e.dataset.qbFont=String(fs);e.dataset.qbInset=String(inset);e.dataset.qbGap=String(gap);e.dataset.qbOverflow=String(s.getBoundingClientRect().width>available+.2);
+ }
+ function titles(){
+  for(const e of document.querySelectorAll('.plq>span,.entries .ent h3')){
+   if(!vis(e))continue;const plaque=e.parentElement.classList.contains('plq'),box=plaque?e.parentElement:e;
+   const inset=plaque?Math.max(36,box.clientHeight*.38):2,available=box.clientWidth-2*inset,cap=plaque?(innerWidth<=760?24:30):24;
+   e.style.whiteSpace='nowrap';let lo=1,hi=cap*4;const r=document.createRange();r.selectNodeContents(e);
+   while(lo<hi){const mid=Math.ceil((lo+hi)/2);e.style.fontSize=mid/4+'px';if(r.getBoundingClientRect().width<=available+.01)lo=mid;else hi=mid-1}
    e.style.fontSize=lo/4+'px';e.dataset.titleFitWidth=String(available);e.dataset.titleInset=String(inset);
-  });
+  }
  }
- function all(){
-  if(running)return;running=true;
-  try{if(root.lang==='en'){const labels={'Read the next chapter ›':'Next chapter','‹ Previous chapter':'Prev. chapter','Latest chapters':'New chapters'};document.querySelectorAll('.paper .btn').forEach(e=>{const old=e.textContent.trim();if(Object.hasOwn(labels,old)){e.setAttribute('aria-label',e.getAttribute('aria-label')||old);e.textContent=labels[old];}});}document.querySelectorAll(selector).forEach(fit);fitTitles();if(root.dataset.buttonFitReady!=='true')root.dataset.buttonFitReady='true';}
-  finally{running=false;}
+ function collapseNav(){
+  const wrap=document.querySelector('.top>.wrap'),nav=wrap?.querySelector('.nav'),acts=wrap?.querySelector('.acts');if(!wrap||!nav||!acts||innerWidth<1181)return;
+  
+  if([...nav.querySelectorAll('.qb-framed')].some(e=>e.dataset.qbOverflow==='true')){root.dataset.qbNavCollapsed='true';return;}
+  const sum=[...wrap.children].reduce((n,c)=>n+c.getBoundingClientRect().width,0)+Math.max(0,wrap.children.length-1)*16;
+  if(sum>inner(wrap)+1)root.dataset.qbNavCollapsed='true';
  }
- function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;all();observe();});}
- const watched=new WeakSet(),resize=new ResizeObserver(schedule);
- function observe(){document.querySelectorAll(selector).forEach(e=>{if(!watched.has(e)){watched.add(e);resize.observe(e);}});}
- new MutationObserver(schedule).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class','hidden','open','lang','data-font']});
- addEventListener('resize',schedule,{passive:true});document.fonts.ready.then(()=>{fontEpoch++;schedule();});
- document.fonts.addEventListener('loadingdone',()=>{fontEpoch++;schedule();});
- // 显式同步入口供同一页面打开抽屉后测量，生产交互也由观察器同步。
- globalThis.qbFitButtons=all;observe();schedule();
+ function all(){if(running||root.clientWidth<=1||root.clientHeight<=1)return;running=true;observer.disconnect();try{delete root.dataset.qbNavCollapsed;
+  const es=elements();es.forEach(normalize);const specs=es.filter(e=>vis(e)&&e.querySelector(':scope>.qb-label')).map(spec);prepareGroups(specs);specs.forEach(fit);titles();collapseNav();root.dataset.buttonFitReady='true';root.dataset.qbFrameVersion='A4x';
+ }finally{running=false;observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class','hidden','open','lang','data-font']})}}
+ function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;all()})}
+ const observer=new MutationObserver(schedule);observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ addEventListener('resize',()=>{delete root.dataset.qbNavCollapsed;schedule()},{passive:true});document.fonts.ready.then(schedule);document.fonts.addEventListener('loadingdone',schedule);
+ globalThis.qbFitButtons=all;schedule();
 })();

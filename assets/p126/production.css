@@ -217,3 +217,55 @@ html:lang(zh) .player .pl-row>.btn:first-child{letter-spacing:10px!important}
 .paper .pager>span:not(:empty){flex:0 0 100%;text-align:center}
 
 @media(min-width:1280px){.hero .txt{position:relative;left:-8px}}
+
+/* 作者已采用的A角花：四角24px，96px切片；四条直边独立延展，无整图拉伸。 */
+:root{--qb-control-font:"QWK","LXGW WenKai","Kaiti SC",serif;--qb-corner:url('/assets/p126/button-corners/corner-jade@4x.png');--qb-fill:linear-gradient(110deg,#063427,#0b5b40 55%,#073629)}
+html[data-skin=ink]{--qb-corner:url('/assets/p126/button-corners/corner-cloud@4x.png');--qb-fill:linear-gradient(110deg,#07152d,#14284b 55%,#07162d)}
+html[data-skin=sandal]{--qb-corner:url('/assets/p126/button-corners/corner-cloud@4x.png');--qb-fill:linear-gradient(110deg,#2e0806,#5a1710 55%,#310908)}
+html[data-skin] body .qb-framed.qb-framed{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;isolation:isolate;width:var(--qb-width,248px)!important;max-width:100%!important;min-width:0!important;height:var(--qb-height,64px)!important;min-height:var(--qb-height,64px)!important;flex:0 1 auto!important;padding:0 var(--qb-inset,48px)!important;border:0!important;border-radius:2px!important;background:none!important;color:var(--btn-text,#ffe8b0)!important;font-size:var(--qb-font,24px)!important;font-weight:400!important;line-height:1!important;letter-spacing:0!important;text-indent:0!important;white-space:nowrap!important;text-decoration:none;overflow:visible;text-shadow:0 1px 2px #0008;cursor:pointer;vertical-align:middle;appearance:none;-webkit-appearance:none}
+html[data-skin] body .qb-framed.qb-framed::before,html[data-skin] body .qb-framed.qb-framed::after{content:none!important}
+html[data-skin] body .qb-framed.qb-framed>.qb-label{position:relative!important;z-index:1;display:inline-flex!important;align-items:center;justify-content:center;font-size:inherit!important;font-family:inherit!important;font-weight:inherit;line-height:1!important;letter-spacing:var(--qb-tracking,0px)!important;text-indent:0!important;gap:var(--qb-gap,0px);white-space:nowrap;word-break:normal;overflow-wrap:normal;max-width:none!important;width:auto!important;transform:translateY(var(--qb-optical-y,-1px));pointer-events:none}
+html[data-skin] body .qb-framed.qb-framed>.qb-label>span{display:inline-block;font-size:inherit!important;font-family:inherit!important;font-weight:inherit;line-height:1!important;letter-spacing:0!important}
+/* 旧订阅页 .ways span 是正文墨色；按钮标签必须继承金色，不能被正文规则覆盖。 */
+html[data-skin] body .qb-framed.qb-framed>.qb-label,html[data-skin] body .qb-framed.qb-framed>.qb-label>span{color:inherit!important}
+html[data-skin] body .ways .qb-framed{align-self:center!important;margin-inline:auto!important}
+.qb-frame{position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--qb-fill);border-radius:2px;filter:none}
+.qb-frame>.qb-c{position:absolute;width:24px;height:24px;left:0;top:0;background-image:var(--qb-corner);background-position:center;background-size:24px 24px;background-repeat:no-repeat}
+.qb-frame>.qb-c.tr{left:auto;right:0;transform:scaleX(-1)}.qb-frame>.qb-c.bl{top:auto;bottom:0;transform:scaleY(-1)}.qb-frame>.qb-c.br{left:auto;right:0;top:auto;bottom:0;transform:scale(-1)}
+.qb-frame>.qb-e{position:absolute;left:24px;right:24px;top:1.8px;height:3.2px;background:linear-gradient(#71420a,#e6bc59 25%,#fff5c3 43%,#cf942c 65%,#8e5713)}
+.qb-frame>.qb-e.bottom{top:auto;bottom:1.8px;transform:scaleY(-1)}
+.qb-frame>.qb-e.left,.qb-frame>.qb-e.right{left:1.8px;right:auto;top:24px;bottom:24px;width:3.2px;height:auto;background:linear-gradient(90deg,#71420a,#e6bc59 25%,#fff5c3 43%,#cf942c 65%,#8e5713)}
+.qb-frame>.qb-e.right{left:auto;right:1.8px;transform:scaleX(-1)}
+.qb-framed:hover>.qb-frame{filter:brightness(1.1)}.qb-framed:active>.qb-frame{filter:brightness(.8)}.qb-framed.on>.qb-frame,.qb-framed[aria-pressed=true]>.qb-frame{filter:brightness(1.12)}
+.qb-framed:disabled,.qb-framed.off,.qb-framed[aria-disabled=true]{cursor:default;opacity:.58}.qb-framed:disabled>.qb-frame,.qb-framed.off>.qb-frame{filter:saturate(.45)}
+.qb-framed:focus-visible{outline:2px solid var(--gold,#f0d48a)!important;outline-offset:4px}
+html body .qb-group{gap:14px;flex-wrap:wrap;align-items:center;justify-content:center}
+html body .qb-input-row{display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
+html body .qb-input-row input{flex:1 1 240px;min-width:0;box-sizing:border-box}
+html[data-qb-nav-collapsed=true] .top .nav{display:none!important}
+html[data-qb-nav-collapsed=true] .top .acts>[data-menu-toggle]{display:inline-flex!important}
+html body .p126-pop .qb-framed{width:100%!important}
+html body .settings .seg{justify-content:center;gap:8px}
+/* 阅读/有声播放器保留原来的剩余宽进度条，不以整行当按钮分组。 */
+html body [data-audio-page] .pl-controls{flex-wrap:nowrap}
+@media(max-width:760px){html body .drawer .dnav{grid-template-columns:1fr;justify-items:center}html body .qb-input-row{flex-direction:column;align-items:center}html body .qb-input-row input{flex:0 0 auto;width:100%}html body .qb-input-row .qb-framed{width:min(320px,100%)!important}}
+@media(min-width:1181px){html body .hero .row.qb-group,html body .nhero .row.qb-group{justify-content:flex-start}}
+
+/* 原生details关闭时不布局浮层；避免窄屏浮层落到负坐标。 */
+html body .p126-menu:not([open])>.p126-pop{display:none!important}
+html body .drawer .dnav{justify-items:center}
+@media(max-width:760px){html body .drawer-tools .p126-pop{position:fixed;left:16px;right:16px;top:142px;width:auto;max-width:calc(100vw - 32px);box-sizing:border-box}}
+
+/* 原站外文字体品牌不可被flex压缩；预算包含外边距，反复拟合保持幂等。 */
+html body .top .brand{flex-shrink:0}
+html[data-skin] body .qb-framed.qb-framed{font-family:var(--qb-control-font)!important}
+html:lang(zh-Hant){--qb-control-font:"QWK",serif}
+html:lang(ja){--qb-control-font:"QWJ","QWK",serif}
+
+/* 同源九宫格直边：从已采用角花末列/末行重切，不用近似金色渐变。只影响绝对定位装饰层。 */
+:root{--qb-edge-h:url('/assets/p126/button-corners/edge-jade-h@4x.png');--qb-edge-v:url('/assets/p126/button-corners/edge-jade-v@4x.png')}
+html[data-skin=ink],html[data-skin=sandal]{--qb-edge-h:url('/assets/p126/button-corners/edge-cloud-h@4x.png');--qb-edge-v:url('/assets/p126/button-corners/edge-cloud-v@4x.png')}
+.qb-frame>.qb-e{border:0;padding:0;margin:0;border-radius:0;box-shadow:none;filter:none;backdrop-filter:none;-webkit-backdrop-filter:none;z-index:auto;background-color:transparent;top:0;height:24px;background-image:var(--qb-edge-h);background-position:0 0;background-size:1px 24px;background-repeat:repeat-x}
+.qb-frame>.qb-e.bottom{top:auto;bottom:0}
+.qb-frame>.qb-e.left,.qb-frame>.qb-e.right{left:0;right:auto;top:24px;bottom:24px;width:24px;height:auto;background-image:var(--qb-edge-v);background-position:0 0;background-size:24px 1px;background-repeat:repeat-y}
+.qb-frame>.qb-e.right{left:auto;right:0}
