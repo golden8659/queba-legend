@@ -357,19 +357,6 @@ html body .qb-unified-head [data-qb-menu-icon]>.qb-label>*{display:none!importan
  html body .qb-unified-head .qb-frame>.qb-e.right{left:auto;right:0}
 }
 @media(max-width:360px){html body .qb-unified-head .wrap{padding-inline:8px}}
-/* Clean nine-slice frame; clouds and ornaments are detached, fixed-proportion SVGs. */
-:root{--qb-plaque-frame:url('/assets/p126/refined20261111/plaque-frame-jade.svg');--qb-title-gap:32px}
-html[data-skin=ink]{--qb-plaque-frame:url('/assets/p126/refined20261111/plaque-frame-ink.svg')}
-html[data-skin=sandal]{--qb-plaque-frame:url('/assets/p126/refined20261111/plaque-frame-sandal.svg')}
-html body .qb-titled-section{padding-top:calc(var(--qb-title-gap) + 10px)}
-html body .plq.qb-plaque-clean{position:relative;width:min(var(--pw,420px),calc(100% - 48px));height:76px;min-height:76px;aspect-ratio:auto;margin:0 auto calc(var(--qb-title-gap) + 6px);background:none!important;border:12px solid transparent;border-image-source:var(--qb-plaque-frame);border-image-slice:24 fill;border-image-width:12px;border-image-repeat:stretch;filter:drop-shadow(0 4px 8px #0006)}
-html body .plq.qb-plaque-clean::before,html body .plq.qb-plaque-clean::after{content:"";position:absolute;top:50%;width:60px;height:67px;background:url('/assets/p126/refined20261111/plaque-cloud.svg') center/contain no-repeat;transform:translateY(-50%);pointer-events:none}
-html body .plq.qb-plaque-clean::before{left:-36px}html body .plq.qb-plaque-clean::after{right:-36px;transform:translateY(-50%) scaleX(-1)}
-html body .plq.qb-plaque-clean>span{position:absolute;inset:0 48px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0;line-height:1.1;white-space:nowrap;letter-spacing:.06em!important;text-indent:0!important;text-align:center;overflow:visible}
-html body .plq.qb-plaque-clean>span>i{position:static;display:inline-block;font:inherit;color:inherit;font-style:normal;line-height:inherit}
-html body .plq.qb-plaque-clean>span::before{content:"";position:absolute;top:-22px;left:50%;width:36px;height:18px;transform:translateX(-50%);background:url('/assets/p126/refined20261111/plaque-lotus.svg') center/contain no-repeat;pointer-events:none}
-html body .plq.qb-plaque-clean>span::after{content:"";position:absolute;bottom:-18px;left:50%;width:22px;height:12px;transform:translateX(-50%);background:url('/assets/p126/refined20261111/plaque-knot.svg') center/contain no-repeat;pointer-events:none}
-@media(max-width:760px){:root{--qb-title-gap:24px}html body .plq.qb-plaque-clean>span{gap:6px;inset-inline:36px}}
 /* The entire original entry becomes the single semantic link. */
 html body .qb-entry-card{position:relative;text-decoration:none;color:inherit;border-radius:8px;touch-action:manipulation}
 html body .qb-entry-card .pic{transition:box-shadow .18s ease,transform .18s ease,border-color .18s ease}
@@ -382,3 +369,116 @@ html body .rtool>details.p126-menu{width:100%;max-width:248px;align-self:center}
 html body .rtool>details.p126-menu>summary{width:100%!important}
 html body .rtool>details.p126-menu>.settings{left:0;right:auto;max-width:calc(100vw - 32px)}
 @media(prefers-reduced-motion:reduce){html body .qb-entry-card .pic,html body .qb-entry-card .pic img{transition:none}html body .qb-entry-card:hover .pic img{transform:none}}
+
+/* Author 2026-11-11: generated fine gold metal, clean landscape, original title spacing. */
+:root{--fine-metal:url('/assets/p126/fine20261111/gold-frame.webp');--fine-landscape:url('/assets/p126/fine20261111/landscape-jade.webp');--fine-title:url('/assets/p126/fine20261111/plaque-jade-9.webp')}
+html[data-skin=ink]{--fine-landscape:url('/assets/p126/fine20261111/landscape-ink-rich-v2.webp');--fine-title:url('/assets/p126/fine20261111/plaque-ink-9.webp')}
+html[data-skin=sandal]{--fine-landscape:url('/assets/p126/fine20261111/landscape-sandal-rich-v2.webp');--fine-title:url('/assets/p126/fine20261111/plaque-sandal-9.webp')}
+/* Same approved section coordinates: before12:04 section rhythm56/44px, title clearance28/22px. */
+html body section.sec{padding-top:56px}
+html body .plq,html body .plq.qb-plaque-clean{position:relative;box-sizing:border-box;width:min(var(--pw,420px),100%);height:94px;min-height:94px;aspect-ratio:auto;margin:0 auto 28px!important;border:0;background:none!important;filter:drop-shadow(0 3px 4px #0008)}
+html body .plq::before,html body .plq.qb-plaque-clean::before{content:"";position:absolute;inset:0;width:auto;height:auto;left:0;right:0;top:0;transform:none;background:none;border-style:solid;border-color:transparent;border-width:0 73.2px;border-image:var(--fine-title) 0 380 fill / 0 73.2px / 0 stretch;pointer-events:none}
+html body .plq::after,html body .plq.qb-plaque-clean::after{content:none!important}
+html body .plq>span,html body .plq.qb-plaque-clean>span{position:absolute;inset:23px 78px 21px!important;display:flex;align-items:center;justify-content:center;gap:0;padding:0;line-height:1.12;letter-spacing:0!important;text-indent:0!important;white-space:nowrap;text-align:center;color:#F6DE8D;font-weight:800;text-shadow:0 1px 0 #62431a,0 2px 2px #0009;overflow:visible}
+html body .plq>span>i{font:inherit;font-style:normal;margin-inline:.17em;position:static}
+html body .plq>span::before{content:"";position:absolute;left:50%;top:-23px;width:57.8px;height:18.9px;transform:translateX(-50%);background:url('/assets/p126/fine20261111/plaque-lotus.webp') center/contain no-repeat;pointer-events:none}
+html body .plq>span::after{content:"";position:absolute;left:50%;bottom:-21px;width:48.2px;height:15.4px;transform:translateX(-50%);background:url('/assets/p126/fine20261111/plaque-knot.webp') center/contain no-repeat;pointer-events:none}
+/* All metal corners remain fixed ratio; only undecorated straight rails extend. */
+html[data-skin] body .pnl{border-width:46px;border-style:solid;border-image-source:var(--fine-metal);border-image-slice:180;border-image-width:64px;border-image-repeat:stretch;background:var(--fine-landscape) center bottom/cover no-repeat;background-origin:border-box;background-clip:border-box;position:relative;padding-inline:32px;box-shadow:0 12px 28px #0008}
+html[data-skin] body .pnl::before,html[data-skin] body .pnl::after{content:none!important}
+html[data-skin] body .cc{border-image-source:var(--fine-metal);border-image-slice:180;border-image-width:32px;border-image-repeat:stretch;background:var(--fine-landscape) center bottom/cover no-repeat;background-origin:border-box;box-shadow:0 4px 9px #0006}
+/* Existing portrait/lotus silhouettes are retained; no new character/card composition. */
+html[data-skin] body .btn.qb-framed{background-color:var(--bar2);box-shadow:0 2px 4px #0008;color:#F6DE8D}
+html[data-skin] body .btn.qb-framed>.qb-frame{border:0;background:none;overflow:visible}
+html[data-skin] body .btn.qb-framed>.qb-frame::before{content:"";position:absolute;inset:0;border:1px solid transparent;border-image:var(--fine-metal) 180 / 24px stretch;pointer-events:none}
+html[data-skin] body .btn.qb-framed>.qb-frame>*{display:none!important}
+html[data-skin] body .btn.qb-framed::after{content:none!important}
+html[data-skin] body .ent .pic,html[data-skin] body .dsoon .pic,html[data-skin] body .pnl .shot{border:0;border-radius:6px;box-shadow:0 5px 12px #0008;overflow:hidden}
+html[data-skin] body .ent .pic::after,html[data-skin] body .dsoon .pic::after,html[data-skin] body .pnl .shot::after{content:"";position:absolute;inset:0;border:1px solid transparent;border-image:var(--fine-metal) 180 / 32px stretch;pointer-events:none;z-index:3}
+html[data-skin] body .ent .pic{position:relative}
+@media(max-width:760px){
+ html body section.sec{padding-top:44px}
+ html body .plq,html body .plq.qb-plaque-clean{width:min(var(--pw,300px),100%);height:78px;min-height:78px;margin-bottom:22px!important}
+ html body .plq::before,html body .plq.qb-plaque-clean::before{border-width:0 60.7px;border-image-width:0 60.7px}
+ html body .plq>span,html body .plq.qb-plaque-clean>span{inset:19px 64px 17.5px!important}
+ html body .plq>span::before{width:48px;height:15.7px;top:-19px}
+ html body .plq>span::after{width:40px;height:12.8px;bottom:-17.5px}
+ html[data-skin] body .pnl{border-width:20px;border-image-width:36px;padding-inline:12px}
+ html[data-skin] body .btn.qb-framed>.qb-frame::before{border-image-width:18px}
+ html[data-skin] body .ent .pic::after,html[data-skin] body .dsoon .pic::after{border-image-width:24px}
+}
+/* Final edge pass: image terminates inside the metal, never outside its silhouette. */
+html[data-skin] body .pnl{background:none;isolation:isolate}
+html[data-skin] body .pnl::before{content:""!important;position:absolute;inset:-34px;background:var(--fine-landscape) center 70%/cover no-repeat;border-radius:20px;z-index:-1;pointer-events:none}
+html[data-skin] body .btn.qb-framed{background:var(--bar2)!important}
+html[data-skin] body .cc::before{background-image:url('/assets/p126/fine20261111/plaque-lotus.webp');background-size:contain;background-repeat:no-repeat;background-position:center}
+html[data-skin] body .cc::after{background-image:url('/assets/p126/fine20261111/plaque-knot.webp');background-size:contain;background-repeat:no-repeat;background-position:center}
+@media(max-width:760px){html[data-skin] body .pnl::before{inset:-14px;border-radius:10px}}
+
+/* Separate continuous jade field from the shared gold-only nine-slice. */
+:root{--fine-field:url('/assets/p126/fine20261111/plaque-field-jade.webp')}
+html[data-skin=ink]{--fine-field:url('/assets/p126/fine20261111/plaque-field-ink-v2.webp')}
+html[data-skin=sandal]{--fine-field:url('/assets/p126/fine20261111/plaque-field-sandal-v2.webp')}
+html body .plq,html body .plq.qb-plaque-clean{isolation:isolate}
+html body .plq::before,html body .plq.qb-plaque-clean::before{z-index:1}
+html body .plq::after,html body .plq.qb-plaque-clean::after{content:""!important;position:absolute;inset:23px 44px 21px;border-radius:28px;background:var(--fine-field) center/cover no-repeat;pointer-events:none;z-index:0}
+html body .plq>span{z-index:2}
+/* Landscape below the panel overlay; its metal is always the frontmost decorative layer. */
+html[data-skin] body .pnl{border-image:none;border-color:transparent;background:none}
+html[data-skin] body .pnl::after{content:""!important;position:absolute;inset:-46px;background:none;border:1px solid transparent;border-image:var(--fine-metal) 180 / 64px stretch;pointer-events:none;z-index:2}
+html[data-skin] body .btn.qb-framed.qb-framed{background:var(--bar2)!important}
+html[data-skin] body .btn.qb-framed.qb-framed::before,html[data-skin] body .btn.qb-framed.qb-framed::after{content:none!important;background:none!important}
+@media(max-width:760px){
+ html body .plq::after,html body .plq.qb-plaque-clean::after{inset:19px 36px 17.5px;border-radius:23px}
+ html[data-skin] body .pnl::after{inset:-20px;border-image-width:36px}
+}
+
+/* Author screenshot correction: paint only inside the gold opening, never its outer rectangle. */
+html[data-skin] body .btn.qb-framed.qb-framed{background:none!important;box-shadow:none}
+html[data-skin] body .btn.qb-framed>.qb-frame{isolation:isolate;background:none!important}
+html[data-skin] body .btn.qb-framed>.qb-frame::before{z-index:1}
+html[data-skin] body .btn.qb-framed>.qb-frame::after{content:"";position:absolute;inset:5px;border-radius:12px;background:var(--bar2);z-index:0;pointer-events:none}
+html[data-skin] body .ent .pic,html[data-skin] body .dsoon .pic,html[data-skin] body .pnl .shot{background:none!important;box-shadow:none;overflow:visible}
+html body .qb-picture-clip{position:absolute;inset:0;display:block;clip-path:inset(7px round 12px);overflow:hidden}
+html[data-skin] body .pnl .shot img{clip-path:inset(7px round 12px)}
+html[data-skin] body .qb-puzzle-panel{border-width:32px}
+html[data-skin] body .qb-puzzle-panel::after{inset:-32px}
+html[data-skin] body .qb-puzzle-panel::before{inset:-20px}
+html[data-skin] body .qb-puzzle-panel>p{margin:0 0 16px;text-align:center}
+html[data-skin=jade] body .qb-puzzle-panel{--fine-landscape:url('/assets/p126/fine20261111/landscape-jade-bright.webp')}
+html[data-skin] body .qb-puzzle-panel .btn.qb-framed>.qb-frame::after{background-image:linear-gradient(#f6de8d18,#f6de8d18),var(--fine-field);background-size:100% 100%,auto 190%;background-position:center,center 32%;background-repeat:no-repeat}
+@media(max-width:760px){
+ html[data-skin] body .btn.qb-framed>.qb-frame::after{inset:4px;border-radius:9px}
+ html body .qb-picture-clip,html[data-skin] body .pnl .shot img{clip-path:inset(5px round 9px)}
+ html[data-skin] body .qb-puzzle-panel{border-width:20px}
+ html[data-skin] body .qb-puzzle-panel::after{inset:-20px}
+ html[data-skin] body .qb-puzzle-panel::before{inset:-14px}
+}
+
+/* Author: preserve complete content within the existing frame, including hover. */
+html body .qb-picture-clip{inset:7px;clip-path:none;border-radius:10px;background:var(--bar2);overflow:hidden}
+html[data-skin] body .ent .pic img,html[data-skin] body .dsoon .pic img{box-sizing:border-box!important;width:100%!important;height:100%!important;padding:0;object-fit:cover!important;object-position:center!important;transform:scale(1)!important}
+@media(hover:hover) and (pointer:fine){html[data-skin] body .qb-entry-card:hover .pic img{transform:scale(1)!important}}
+html[data-skin] body .pnl .shot img{box-sizing:border-box;width:100%;height:auto;object-fit:contain;clip-path:none;padding:24px;transform:none}
+
+/* Reframe existing approved full figure assets into head/shoulder avatars; no painted pixels. */
+html body .cc .qb-avatar-viewport{display:block;position:relative;overflow:hidden;background:var(--bar2)}
+html body .cc .qb-avatar-viewport>img{position:absolute!important;display:block!important;width:150%!important;height:300%!important;max-width:none!important;max-height:none!important;left:var(--avatar-left)!important;top:var(--avatar-top)!important;object-fit:fill!important;border:0!important;border-radius:0!important;margin:0!important;transform:none!important}
+
+/* Preserve the original circular avatar footprint when its image is reframed. */
+html body .cc .qb-avatar-viewport{width:116px;height:116px;flex-shrink:0;border-radius:50%;border:2px solid var(--gold);box-shadow:0 0 0 3px #0009}
+@media(max-width:1366px){html body .cc .qb-avatar-viewport{width:100px;height:100px}}
+@media(max-width:760px){html body .cc .qb-avatar-viewport{width:84px;height:84px;max-width:100%}}
+
+/* Author review: remove the empty mobile band between platform note and first title. */
+@media(max-width:760px){html body .hero .wrap{padding-bottom:12px}html body .hero+section.sec{padding-top:20px}}
+
+/* Author 6f83: visible ink stone/red sandalwood fields on every button, not only quiz actions. */
+html[data-skin=ink] body .btn.qb-framed>.qb-frame::after,html[data-skin=sandal] body .btn.qb-framed>.qb-frame::after{background-image:linear-gradient(#0003,#0003),var(--fine-field);background-size:100% 100%,cover;background-position:center;background-repeat:no-repeat;box-shadow:inset 0 1px 0 #f6de8d40}
+
+/* Author-approved complete build9 lobby: preserve x0..1920 and y118..964, crop only floral rails.
+   Inner viewport height=(width-14)*846/1920; outer height=44.0625%+7.83125px.
+   Source aspect is preserved; card alone follows lobby aspect rather than clipping side controls. */
+html[data-skin] body .ent .pic.qb-game-complete{aspect-ratio:auto;height:0;padding-top:calc(44.0625% + 7.83125px)}
+html[data-skin] body .ent .pic.qb-game-complete .qb-picture-clip>img{position:absolute;left:0;top:-13.9479905437%;width:100%!important;height:127.6595744681%!important;object-fit:fill!important;transform:none!important;padding:0!important}
+@media(hover:hover) and (pointer:fine){html[data-skin] body .qb-entry-card:hover .pic.qb-game-complete img{transform:none!important}}

@@ -12,11 +12,11 @@
  }}
  labels();addEventListener('resize',labels,{passive:true});
  for(const plaque of document.querySelectorAll('.plq')){
-  plaque.classList.add('qb-plaque-clean');plaque.closest('.sec')?.classList.add('qb-titled-section');
   const label=plaque.querySelector(':scope>span');if(!label)continue;
   const text=label.textContent.trim();
   if(!/[A-Za-z]/.test(text)&&!/[\s]/.test(text)){label.replaceChildren(...Array.from(text).map(char=>{const i=document.createElement('i');i.textContent=char;return i;}));}
  }
+
 })();
 
 (()=>{
@@ -151,7 +151,7 @@
  function titles(){
   for(const e of document.querySelectorAll('.plq>span,.entries .ent h3')){
    if(!vis(e))continue;const plaque=e.parentElement.classList.contains('plq'),box=plaque?e.parentElement:e;
-   const inset=plaque?(box.classList.contains('qb-plaque-clean')?64:Math.max(36,box.clientHeight*.38)):2,available=box.clientWidth-2*inset,cap=plaque?(innerWidth<=760?24:30):24;
+   const inset=plaque?(box.clientWidth-e.clientWidth)/2+4:2,available=box.clientWidth-2*inset,cap=plaque?(innerWidth<=760?24:30):24;
    e.style.whiteSpace='nowrap';let lo=1,hi=cap*4;const r=document.createRange();r.selectNodeContents(e);
    while(lo<hi){const mid=Math.ceil((lo+hi)/2);e.style.fontSize=mid/4+'px';if(r.getBoundingClientRect().width<=available+.01)lo=mid;else hi=mid-1}
    e.style.fontSize=lo/4+'px';e.dataset.titleFitWidth=String(available);e.dataset.titleInset=String(inset);
@@ -212,5 +212,22 @@ globalThis.qbPublicCaptions={attach(audio,segments,stage){
  const phrases=/((?:不碰牌的|不碰牌的)|(?:书生|書生)|(?:父亲|父親)|(?:算盘|算盤)|(?:司筹|司籌)|(?:账本|賬本|帳本)|(?:醒狮|醒獅)|(?:班主)|(?:嗓门|嗓門)|(?:狮头|獅頭)|(?:每一局)|(?:牌史)|(?:独独|獨獨)|(?:沉默)|(?:一局))/g;
  for(const p of document.querySelectorAll('.cc p')){
   const text=p.textContent,parts=text.split(phrases);p.replaceChildren(...parts.filter(Boolean).map(x=>{if(!phrases.test(x)){phrases.lastIndex=0;return document.createTextNode(x);}phrases.lastIndex=0;const span=document.createElement('span');span.className='qb-phrase';span.style.whiteSpace='nowrap';span.textContent=x;return span;}));
+ }
+})();
+
+// Keep the image zoom inside a stationary clip; the gold corner layer stays outside it.
+(()=>{
+ for(const img of document.querySelectorAll('.ent .pic>img,.dsoon .pic>img')){
+  const clip=document.createElement('span');clip.className='qb-picture-clip';img.before(clip);clip.append(img);
+ }
+ for(const panel of document.querySelectorAll('.pnl'))if(panel.querySelector('.p126-card-actions a[href$="puzzle.html"]'))panel.classList.add('qb-puzzle-panel');
+})();
+
+// Avatar portraits use the already approved full figure, preserving the crown and raised hand.
+(()=>{
+ const crops={qinglan:[0,192],yuening:[85,217],jinshi:[112.5,153],zhumo:[122.5,231]};
+ for(const img of document.querySelectorAll('.cc img')){
+  const m=img.getAttribute('src')?.match(/avatar-(qinglan|yuening|jinshi|zhumo)\.webp$/);if(!m)continue;
+  const id=m[1],box=document.createElement('span');box.className=img.className+' qb-avatar-viewport';box.style.setProperty('--avatar-left',(-crops[id][0]/6)+'%');box.style.setProperty('--avatar-top',(-crops[id][1]/6)+'%');img.before(box);img.className='';box.append(img);img.src='/assets/p126/public/p-'+id+'.webp';
  }
 })();
