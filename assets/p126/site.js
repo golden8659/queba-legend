@@ -1,3 +1,24 @@
+// Keep short mobile labels readable; accessible names and destinations remain explicit.
+(()=>{
+ const nodes=[...document.querySelectorAll('.qb-unified-head summary,.qb-unified-head .qb-clean-pop>a')];
+ const originals=new WeakMap(nodes.map(e=>[e,e.textContent.trim()]));
+ function labels(){for(const e of nodes){
+  const original=originals.get(e);let text=original;
+  if(innerWidth<=600&&e.dataset.qbMobileLabel)text=e.dataset.qbMobileLabel;
+  if(innerWidth<=360&&e.dataset.qbNarrowLabel)text=e.dataset.qbNarrowLabel;
+  if(innerWidth<=600&&e.closest('#langmenu')){if(e.getAttribute('lang')?.startsWith('zh'))text=e.getAttribute('lang')==='zh-Hant'?'繁體':'简体';}
+  if(text!==e.textContent.trim()){e.textContent=text;e.classList.remove('qb-framed');}
+  if(text!==original)e.setAttribute('aria-label',original);
+ }}
+ labels();addEventListener('resize',labels,{passive:true});
+ for(const plaque of document.querySelectorAll('.plq')){
+  plaque.classList.add('qb-plaque-clean');plaque.closest('.sec')?.classList.add('qb-titled-section');
+  const label=plaque.querySelector(':scope>span');if(!label)continue;
+  const text=label.textContent.trim();
+  if(!/[A-Za-z]/.test(text)&&!/[\s]/.test(text)){label.replaceChildren(...Array.from(text).map(char=>{const i=document.createElement('i');i.textContent=char;return i;}));}
+ }
+})();
+
 (()=>{
  const root=document.documentElement,menus=[...document.querySelectorAll('details.p126-menu')];
  const save=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
@@ -71,7 +92,7 @@
  }
  function spec(e){
   const drawerNav=!!e.closest('.dnav');const compact=!drawerNav&&!!e.closest('header,.drawer-tools,.p126-pop,.tocbar,.settings');
-  const sample=!!e.closest('.settings .seg'),inset=sample?24:compact?36:48;
+  const sample=!!e.closest('.settings .seg'),head=!!e.closest('.qb-unified-head'),inset=head?(innerWidth<=600?10:24):sample?24:compact?36:48;
   const height=compact?48:64;const hero=innerWidth>=1181&&!!e.closest('.hero,.nhero');
   const base=sample?80:compact?152:248,max=sample?152:compact?200:hero?248:320;
   e.style.setProperty('--qb-height',height+'px');e.style.setProperty('--qb-inset',inset+'px');
@@ -130,7 +151,7 @@
  function titles(){
   for(const e of document.querySelectorAll('.plq>span,.entries .ent h3')){
    if(!vis(e))continue;const plaque=e.parentElement.classList.contains('plq'),box=plaque?e.parentElement:e;
-   const inset=plaque?Math.max(36,box.clientHeight*.38):2,available=box.clientWidth-2*inset,cap=plaque?(innerWidth<=760?24:30):24;
+   const inset=plaque?(box.classList.contains('qb-plaque-clean')?64:Math.max(36,box.clientHeight*.38)):2,available=box.clientWidth-2*inset,cap=plaque?(innerWidth<=760?24:30):24;
    e.style.whiteSpace='nowrap';let lo=1,hi=cap*4;const r=document.createRange();r.selectNodeContents(e);
    while(lo<hi){const mid=Math.ceil((lo+hi)/2);e.style.fontSize=mid/4+'px';if(r.getBoundingClientRect().width<=available+.01)lo=mid;else hi=mid-1}
    e.style.fontSize=lo/4+'px';e.dataset.titleFitWidth=String(available);e.dataset.titleInset=String(inset);

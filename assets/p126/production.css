@@ -335,3 +335,50 @@ html[data-skin=sandal]{--plaque:url("/assets/p126/gold20261110/plaque-sandal.png
 .cc img{flex-shrink:0}.cc p{max-width:100%;min-width:0}
 @media (min-width:761px) and (max-width:1366px) and (hover:none) and (pointer:coarse){.castrow{grid-template-columns:repeat(2,minmax(0,260px));justify-content:center;max-width:640px}.cc{width:100%;padding:44px 20px 40px;max-width:260px}.cc img{width:100px;height:100px}}
 @media(max-width:760px){.cc{padding:40px 10px 34px;border-width:1px;border-image-width:26px}.cc::before{width:32px;height:24.8px;top:-1px}.cc::after{width:18px;height:18.82px;bottom:-1px}.cc img{max-width:100%;width:84px;height:84px}}
+
+/* Author 2026-11-11: one shared header, aligned frameless dropdowns. */
+html body .qb-unified-head{--qb-head-btn:clamp(74px,21.54vw,136px);--qb-head-logo:clamp(64px,calc(100vw - var(--qb-head-btn) - var(--qb-head-btn) - var(--qb-head-btn) - 40px),240px);z-index:200}
+html body .qb-unified-head .wrap{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:76px;height:auto;padding-inline:12px}
+html body .qb-unified-head .brand{width:var(--qb-head-logo);height:76px;flex:0 0 var(--qb-head-logo)}
+html body .qb-unified-head .brand img{display:block;width:100%;height:auto;max-height:52px;max-width:100%;object-fit:contain}
+html body .qb-unified-head .acts{display:flex;align-items:center;gap:4px;flex:0 0 auto}
+html body header.top.qb-unified-head .acts>details.p126-menu{display:block!important;position:relative!important;width:var(--qb-head-btn);min-width:0;flex:0 0 var(--qb-head-btn)}
+html[data-skin] body .qb-unified-head .qb-framed.qb-framed{width:100%!important;max-width:100%!important;--qb-height:48px}
+html body .qb-unified-head .p126-menu[open]{z-index:5}
+html body .qb-unified-head .qb-clean-pop{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;right:auto!important;transform:none!important;width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box;margin:0!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;display:flex;flex-direction:column;gap:8px;z-index:1000;max-height:calc(100dvh - 100px)!important;overflow-x:visible;overflow-y:auto;overscroll-behavior:contain}
+html body header.top.qb-unified-head .qb-clean-pop>a,html body header.top.qb-unified-head .qb-clean-pop>button{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;padding-inline:12px!important;font-size:18px!important;letter-spacing:.01em!important;min-height:48px;flex:none!important;margin:0}
+html[data-skin] body .qb-unified-head [data-qb-menu-icon]>.qb-label{width:24px!important;height:18px;font-size:0!important;gap:0;transform:none;background:linear-gradient(to bottom,currentColor 0 3px,transparent 3px 7.5px,currentColor 7.5px 10.5px,transparent 10.5px 15px,currentColor 15px 18px)}
+html body .qb-unified-head [data-qb-menu-icon]>.qb-label>*{display:none!important}
+@media(max-width:600px){
+ html body header.top.qb-unified-head .qb-clean-pop>a,html body header.top.qb-unified-head .qb-clean-pop>button{padding-inline:8px!important;font-size:15px!important;letter-spacing:.02em!important}
+ html body .qb-unified-head .qb-frame>.qb-c{width:16px;height:16px;background-size:16px 16px}
+ html body .qb-unified-head .qb-frame>.qb-e{left:16px;right:16px;height:16px;background-size:1px 16px}
+ html body .qb-unified-head .qb-frame>.qb-e.left,html body .qb-unified-head .qb-frame>.qb-e.right{top:16px;bottom:16px;width:16px;height:auto;background-size:16px 1px;left:0;right:auto}
+ html body .qb-unified-head .qb-frame>.qb-e.right{left:auto;right:0}
+}
+@media(max-width:360px){html body .qb-unified-head .wrap{padding-inline:8px}}
+/* Clean nine-slice frame; clouds and ornaments are detached, fixed-proportion SVGs. */
+:root{--qb-plaque-frame:url('/assets/p126/refined20261111/plaque-frame-jade.svg');--qb-title-gap:32px}
+html[data-skin=ink]{--qb-plaque-frame:url('/assets/p126/refined20261111/plaque-frame-ink.svg')}
+html[data-skin=sandal]{--qb-plaque-frame:url('/assets/p126/refined20261111/plaque-frame-sandal.svg')}
+html body .qb-titled-section{padding-top:calc(var(--qb-title-gap) + 10px)}
+html body .plq.qb-plaque-clean{position:relative;width:min(var(--pw,420px),calc(100% - 48px));height:76px;min-height:76px;aspect-ratio:auto;margin:0 auto calc(var(--qb-title-gap) + 6px);background:none!important;border:12px solid transparent;border-image-source:var(--qb-plaque-frame);border-image-slice:24 fill;border-image-width:12px;border-image-repeat:stretch;filter:drop-shadow(0 4px 8px #0006)}
+html body .plq.qb-plaque-clean::before,html body .plq.qb-plaque-clean::after{content:"";position:absolute;top:50%;width:60px;height:67px;background:url('/assets/p126/refined20261111/plaque-cloud.svg') center/contain no-repeat;transform:translateY(-50%);pointer-events:none}
+html body .plq.qb-plaque-clean::before{left:-36px}html body .plq.qb-plaque-clean::after{right:-36px;transform:translateY(-50%) scaleX(-1)}
+html body .plq.qb-plaque-clean>span{position:absolute;inset:0 48px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0;line-height:1.1;white-space:nowrap;letter-spacing:.06em!important;text-indent:0!important;text-align:center;overflow:visible}
+html body .plq.qb-plaque-clean>span>i{position:static;display:inline-block;font:inherit;color:inherit;font-style:normal;line-height:inherit}
+html body .plq.qb-plaque-clean>span::before{content:"";position:absolute;top:-22px;left:50%;width:36px;height:18px;transform:translateX(-50%);background:url('/assets/p126/refined20261111/plaque-lotus.svg') center/contain no-repeat;pointer-events:none}
+html body .plq.qb-plaque-clean>span::after{content:"";position:absolute;bottom:-18px;left:50%;width:22px;height:12px;transform:translateX(-50%);background:url('/assets/p126/refined20261111/plaque-knot.svg') center/contain no-repeat;pointer-events:none}
+@media(max-width:760px){:root{--qb-title-gap:24px}html body .plq.qb-plaque-clean>span{gap:6px;inset-inline:36px}}
+/* The entire original entry becomes the single semantic link. */
+html body .qb-entry-card{position:relative;text-decoration:none;color:inherit;border-radius:8px;touch-action:manipulation}
+html body .qb-entry-card .pic{transition:box-shadow .18s ease,transform .18s ease,border-color .18s ease}
+html body .qb-entry-card .pic img{transition:transform .3s ease;transform:scale(1);transform-origin:center}
+html body .qb-entry-card:focus-visible{outline:3px solid #F6DE8D;outline-offset:7px}
+@media(hover:hover) and (pointer:fine){html body .qb-entry-card:hover .pic{border-color:#F6DE8D;box-shadow:0 0 0 2px #E9C46A88,0 0 22px #E9C46A55}html body .qb-entry-card:hover .pic img{transform:scale(1.035)}}
+html body .qb-entry-card:active .pic{transform:translateY(1px) scale(.985);border-color:#FFF0B5;box-shadow:0 0 0 2px #F6DE8D99}
+html body .hero [data-row=hero]{justify-content:center}
+html body .rtool>details.p126-menu{width:100%;max-width:248px;align-self:center}
+html body .rtool>details.p126-menu>summary{width:100%!important}
+html body .rtool>details.p126-menu>.settings{left:0;right:auto;max-width:calc(100vw - 32px)}
+@media(prefers-reduced-motion:reduce){html body .qb-entry-card .pic,html body .qb-entry-card .pic img{transition:none}html body .qb-entry-card:hover .pic img{transform:none}}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="100" viewBox="0 0 90 100">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="0.35" y2="1">
+<stop stop-color="#FFF1BA"/><stop offset=".25" stop-color="#F6DE8D"/><stop offset=".55" stop-color="#E9C46A"/><stop offset=".8" stop-color="#C9A450"/><stop offset="1" stop-color="#B99B45"/>
+</linearGradient>
+<radialGradient id="h" cx=".38" cy=".3" r=".95">
+<stop stop-color="#FBEBAE"/><stop offset=".55" stop-color="#F0D37C"/><stop offset="1" stop-color="#D8B45A"/>
+</radialGradient>
+</defs>
+<g fill="url(#g)" stroke="#A98B3C" stroke-width="2.4"><circle cx="52" cy="25" r="19"/><circle cx="30" cy="46" r="13"/><circle cx="47" cy="69" r="16"/><circle cx="62" cy="47" r="11.5"/></g>
+<g fill="url(#h)" stroke="none"><circle cx="52" cy="25" r="19"/><circle cx="30" cy="46" r="13"/><circle cx="47" cy="69" r="16"/><circle cx="62" cy="47" r="11.5"/></g>
+<g fill="none" stroke-linecap="round">
+<path d="M45.46 8.59A16.41 16.41 0 0 1 57.61 39.07A13.88 13.88 0 0 1 47.33 13.28A11.36 11.36 0 0 1 55.74 34.38A8.84 8.84 0 0 1 49.20 17.97A6.31 6.31 0 0 1 53.87 29.69" stroke="#8F7026" stroke-width="1.99" opacity=".95"/>
+<path d="M45.98 9.89A15.11 15.11 0 0 1 57.16 37.96A12.78 12.78 0 0 1 47.70 14.20A10.46 10.46 0 0 1 55.44 33.64A8.14 8.14 0 0 1 49.42 18.52A5.81 5.81 0 0 1 53.72 29.32" stroke="#FFF7D6" stroke-width="1.10" opacity=".8"/>
+<path d="M18.29 43.01A11.08 11.08 0 0 0 39.76 48.49A9.07 9.07 0 0 0 22.19 44.01A7.05 7.05 0 0 0 35.86 47.50A5.04 5.04 0 0 0 26.10 45.00" stroke="#8F7026" stroke-width="1.60" opacity=".95"/>
+<path d="M19.64 43.36A9.80 9.80 0 0 0 38.63 48.20A8.02 8.02 0 0 0 23.09 44.24A6.24 6.24 0 0 0 35.18 47.32A4.45 4.45 0 0 0 26.55 45.12" stroke="#FFF7D6" stroke-width="0.88" opacity=".8"/>
+<path d="M35.08 77.91A13.64 13.64 0 0 1 56.93 61.58A11.16 11.16 0 0 1 39.05 74.94A8.68 8.68 0 0 1 52.96 64.55A6.20 6.20 0 0 1 43.03 71.97" stroke="#8F7026" stroke-width="1.68" opacity=".95"/>
+<path d="M36.20 77.07A12.36 12.36 0 0 1 56.00 62.28A10.11 10.11 0 0 1 39.80 74.38A7.86 7.86 0 0 1 52.40 64.97A5.62 5.62 0 0 1 43.40 71.69" stroke="#FFF7D6" stroke-width="0.92" opacity=".8"/>
+<path d="M71.39 41.87A9.63 9.63 0 0 0 54.49 51.10A7.49 7.49 0 0 0 67.63 43.92A5.35 5.35 0 0 0 58.25 49.05" stroke="#8F7026" stroke-width="1.60" opacity=".95"/>
+<path d="M70.16 42.54A8.37 8.37 0 0 0 55.47 50.57A6.51 6.51 0 0 0 66.89 44.33A4.65 4.65 0 0 0 58.74 48.78" stroke="#FFF7D6" stroke-width="0.88" opacity=".8"/>
+<path d="M36.47 18.59 A16.80 16.80 0 0 1 46.57 9.10" stroke="#FFF3C8" stroke-width="2" opacity=".55"/>
+<path d="M57.55 77.89 A13.80 13.80 0 0 1 45.22 82.68" stroke="#A98B3C" stroke-width="2" opacity=".4"/>
+</g>
+</svg>
