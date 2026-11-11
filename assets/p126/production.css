@@ -482,3 +482,33 @@ html[data-skin=ink] body .btn.qb-framed>.qb-frame::after,html[data-skin=sandal] 
 html[data-skin] body .ent .pic.qb-game-complete{aspect-ratio:auto;height:0;padding-top:calc(44.0625% + 7.83125px)}
 html[data-skin] body .ent .pic.qb-game-complete .qb-picture-clip>img{position:absolute;left:0;top:-13.9479905437%;width:100%!important;height:127.6595744681%!important;object-fit:fill!important;transform:none!important;padding:0!important}
 @media(hover:hover) and (pointer:fine){html[data-skin] body .qb-entry-card:hover .pic.qb-game-complete img{transform:none!important}}
+
+/* Author d9f387+a1c434: only five local layout/material corrections. */
+/* Equal four-card pictures. Keep the accepted full lobby, including all edge controls. */
+html[data-skin] body .ent .pic.qb-game-complete{aspect-ratio:16/9;height:auto;padding-top:0}
+html[data-skin] body .ent .pic.qb-game-complete .qb-picture-clip>img{position:static;inset:auto;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:none!important}
+/* The language links are framed anchors without .btn; give all framed controls the same metal and field. */
+html[data-skin] body .qb-framed.qb-framed{background:none!important;box-shadow:none}
+html[data-skin] body .qb-framed.qb-framed>.qb-frame{border:0;background:none!important;isolation:isolate;overflow:visible}
+html[data-skin] body .qb-framed.qb-framed>.qb-frame>*{display:none!important}
+html[data-skin] body .qb-framed.qb-framed>.qb-frame::before{content:"";position:absolute;inset:0;z-index:1;border:1px solid transparent;border-image:var(--fine-metal) 180 / 24px stretch;pointer-events:none}
+html[data-skin] body .qb-framed.qb-framed>.qb-frame::after{content:"";position:absolute;inset:5px;z-index:0;border-radius:12px;clip-path:inset(0 round 12px);background-image:linear-gradient(#f6de8d18,#f6de8d18),var(--fine-field);background-size:100% 100%,cover;background-position:center;background-repeat:no-repeat;pointer-events:none}
+html[data-skin] body .qb-clean-pop>.qb-framed{background:none!important;border:0!important;box-shadow:none!important}
+/* Existing title plaques already use the approved theme texture; preserve their cloud opening. */
+/* Keep both original game-page actions together, with room inside the outer frame. */
+html body .qb-game-panel>.p126-card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:min(100%,512px);margin:24px auto 28px!important}
+html[data-skin] body .qb-game-panel>.p126-card-actions>.qb-framed{width:100%!important;padding-inline:16px!important}
+/* Shot pseudo-elements had no positioned owner and repeated their frame across the whole panel. */
+html[data-skin] body .qb-game-panel .shot{position:relative;border:0;border-image:none;box-shadow:none;background-color:transparent!important;background-repeat:no-repeat!important;background-position:center!important;background-size:cover!important}
+html[data-skin] body .qb-game-panel .sh-lobby{background-image:var(--shot-lobby)!important}
+html[data-skin] body .qb-game-panel .sh-table{background-image:var(--shot-table)!important}
+html[data-skin] body .qb-game-panel .shot::after{content:none!important}
+@media(max-width:760px){
+ html[data-skin] body .qb-framed.qb-framed>.qb-frame::before{border-image-width:18px}
+ html[data-skin] body .qb-framed.qb-framed>.qb-frame::after{inset:4px;border-radius:9px;clip-path:inset(0 round 9px)}
+ html body .qb-game-panel>.p126-card-actions{gap:12px;margin-block:20px 24px!important}
+ html[data-skin] body .qb-game-panel>.p126-card-actions>.qb-framed{padding-inline:12px!important}
+}
+
+/* Author-approved longer download label: keep both mobile actions readable inside the gold opening. */
+@media(max-width:760px){html[data-skin] body .qb-game-panel>.p126-card-actions .qb-framed>.qb-label{font-size:clamp(13px,4.1vw,18px)!important;letter-spacing:0!important}}
