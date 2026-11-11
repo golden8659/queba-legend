@@ -27,6 +27,22 @@ if(root){
   const miniSlot=root.querySelector('[data-mini-slot]');miniSlot.innerHTML=ui.mini;
   const M=miniSlot.querySelector('.pl-mini');M.querySelector('.pm-info span').textContent=chapterLabel(chapter);M.querySelector('.pm-play').textContent=W.play;
   initAudioPlayer(P,M,W);
+  // Public projection only: approved CH01 transcript/timings, never private review data.
+  const captions=root.querySelector('[data-public-caption-preview]');
+  if(captions){
+   const state=captions.querySelector('.qb-caption-state'),text=captions.querySelector('[data-caption-current]');
+   state.textContent=available(selected)?W.live:W.soon;
+   if(!available(selected))text.textContent='';
+   if(available(selected)&&selected.captions_url){
+    json(selected.captions_url).then(c=>{
+     if(c.schema!=='PUBLIC_AUDIO_CAPTIONS_1'||c.chapter!==chapter||c.revision!==selected.revision||!Array.isArray(c.segments))throw Error('caption binding');
+     const segments=c.segments;let last=-1;
+     function follow(){let lo=0,hi=segments.length-1,index=0;while(lo<=hi){const mid=(lo+hi)>>1;if(segments[mid].start<=A.currentTime){index=mid;lo=mid+1}else hi=mid-1}if(index!==last&&segments[index]){last=index;text.textContent=lang==='zh-Hant'?segments[index].text_zhHant:segments[index].text}}
+     A.addEventListener('timeupdate',follow);A.addEventListener('seeked',follow);follow();
+    }).catch(()=>{text.textContent='';});
+   }
+  }
+
   const list=root.querySelector('[data-audio-list]');
   cat.chapters.forEach(x=>{
    const li=document.createElement('li'),a=document.createElement('a');a.className='audio-chapter';const u=new URL(location.href);u.searchParams.set('chapter',String(x.chapter));a.href=u.pathname+u.search;
